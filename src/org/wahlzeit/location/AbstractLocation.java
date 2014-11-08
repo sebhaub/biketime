@@ -133,7 +133,7 @@ public abstract class AbstractLocation implements Location{
      * @throws java.lang.IllegalArgumentException if the longitude is not a valid value
      */
     protected final void assertIsValidLongitude(double longitude){
-        if (longitude >= -180 && longitude <= 180){
+        if (!(longitude >= -180 && longitude <= 180)){
             throw new IllegalArgumentException("The value "+longitude+ " is not a valid longitude!");
         }
     }
