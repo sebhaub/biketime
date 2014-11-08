@@ -4,10 +4,10 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
-public class AllLocationTests {
+public class LocationTest{
 
     protected double latitude = 49.575459;
     protected double longitude = 11.0215239;
