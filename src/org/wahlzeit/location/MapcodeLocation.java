@@ -14,18 +14,14 @@ public class MapcodeLocation extends AbstractLocation {
         assertIsValidLatitude(latitude);
         assertIsValidLongitude(longitude);
         mapcode = MapcodeCodec.encodeToInternational(latitude,longitude).getMapcode();
+        this.isLocationSet = true;
     }
 
     public MapcodeLocation(String mapcode){
         assertIsValidMapcodeString(mapcode);
         this.mapcode = mapcode;
+        this.isLocationSet = true;
     }
-
-    @Override
-    public String asString() {
-        return (mapcode);
-    }
-
 
     @Override
     protected void doSetLocation(String mapcode) {
@@ -35,6 +31,11 @@ public class MapcodeLocation extends AbstractLocation {
     @Override
     protected void doSetLocation(double latitude, double longitude) {
         this.mapcode = MapcodeCodec.encodeToInternational(latitude,longitude).getMapcode();
+    }
+
+    @Override
+    protected String doGetAsString() {
+        return mapcode;
     }
 
     @Override

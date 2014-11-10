@@ -34,11 +34,7 @@ public class GPSLocation extends AbstractLocation {
     public GPSLocation(String mapcode){
         assertIsValidMapcodeString(mapcode);
         doSetLocation(mapcode);
-    }
-
-    @Override
-    public String asString() {
-        return ("{lat=["+latitude+"] lon=["+longitude+"]}");
+        this.isLocationSet = true;
     }
 
     @Override
@@ -56,6 +52,11 @@ public class GPSLocation extends AbstractLocation {
     protected void doSetLocation(double latitude, double longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    @Override
+    protected String doGetAsString() {
+        return ("{lat=["+latitude+"] lon=["+longitude+"]}");
     }
 
     @Override

@@ -15,6 +15,8 @@ public abstract class AbstractLocation implements Location{
      * does set the mapcode as the current location in all subclasses
      * assertion if the mapcode is valid has to be done before.
      * @param mapcode the mapcode to set
+     * @methodtype set
+     * @methodproperties primitive hook
      */
     protected abstract void doSetLocation(String mapcode);
 
@@ -23,32 +25,61 @@ public abstract class AbstractLocation implements Location{
      * assertion if the range of the params is valid has to be done before
      * @param latitude the latitude to set in degrees
      * @param longitude the longitude to set in degrees
+     * @methodproperties primitive hook
      */
     protected abstract void doSetLocation(double latitude, double longitude);
 
     /***
+     * returns the location in a human readable format
+     * @return the location as a string
+     *
+     * @methodtype conversion
+     * @methodproperties primitive hook
+     */
+    protected abstract String doGetAsString();
+
+    /***
      *
      * @return the longitude of the location
+     * @methodtype query
+     * @methodproperties primitive hook
      */
     protected abstract double doGetLongitude();
 
     /***
      *
      * @return the latitude of the location
+     * @methodtype query
+     * @methodproperties primitive hook
      */
     protected abstract double doGetLatitude();
 
     /***
      *
      * @return the location encoded as a mapcode string
+     * @methodtype query
+     * @methodproperties primitive hook
      */
     protected abstract String doGetMapcodeString();
 
-    //Region
+    //Region implemented interface
+
+    /***
+     *
+     * @return
+     */
+    public final String asString(){
+        if(!hasLocation()){
+            return "no location set";
+        }
+        return doGetAsString();
+    }
 
     /***
      *
      * @return true if a location is set
+     * @methodtype Boolean query
+     * @methodproperties primitive
      */
     public final boolean hasLocation(){
         return this.isLocationSet;
@@ -58,6 +89,8 @@ public abstract class AbstractLocation implements Location{
      * Does set the location to the given mapcode
      * Also does assert that the given mapcode is valid.
      * @param mapcode the mapcode string which contains the location
+     * @methodtype Command
+     * @methodproperties Composed
      */
     public final void setLocation(String mapcode){
         assertIsValidMapcodeString(mapcode);
@@ -69,6 +102,8 @@ public abstract class AbstractLocation implements Location{
      * Also does assert that the params are valid ones.
      * @param latitude
      * @param longitude the longitude to set
+     * @methodtype Command
+     * @methodproperties Composed
      */
     public final void setLocation(double latitude, double longitude){
         assertIsValidLatitude(latitude);
@@ -76,14 +111,36 @@ public abstract class AbstractLocation implements Location{
         doSetLocation(latitude, longitude);
     }
 
+
+    /***
+     * Returns the latitude of this location
+     * @return the latitude as a double
+     *
+     * @methodtype query
+     * @methodproperties primitive
+     */
     public final double getLatitude(){
         return doGetLatitude();
     }
 
+    /***
+     * Returns the longitude of this location
+     * @return the longitude as a double
+     *
+     * @methodtype query
+     * @methodproperties primitive
+     */
     public final double getLongitude(){
         return doGetLongitude();
     }
 
+    /***
+     * Returns the longitude of this location
+     * @return the longitude as a double
+     *
+     * @methodtype query
+     * @methodproperties primitive
+     */
     public final String getAsMapcodeString(){
        return doGetMapcodeString();
     }
@@ -92,6 +149,8 @@ public abstract class AbstractLocation implements Location{
      *
      * @param other the other Location
      * @return
+     * @methodtype comparison
+     * @methodproperties Composed
      */
     public final boolean isEqualLocation(Location other){
         if(other == null){
@@ -118,6 +177,9 @@ public abstract class AbstractLocation implements Location{
      *
      * @param latitude the latitude value to check
      * @throws java.lang.IllegalArgumentException if the latitude is not a valid value
+     *
+     * @methodtype Assertion
+     * @methodproperties primitive
      */
     protected final void assertIsValidLatitude(double latitude){
         if(!(latitude >= -90 && latitude <= 90)){
@@ -131,6 +193,9 @@ public abstract class AbstractLocation implements Location{
      *
      * @param longitude the latitude value to check
      * @throws java.lang.IllegalArgumentException if the longitude is not a valid value
+     *
+     * @methodtype Assertion
+     * @methodproperties primitive
      */
     protected final void assertIsValidLongitude(double longitude){
         if (!(longitude >= -180 && longitude <= 180)){
@@ -142,6 +207,9 @@ public abstract class AbstractLocation implements Location{
      * Checks if param is a valid mapcode string
      * @param mapcode the string to check
      * @throws java.lang.IllegalArgumentException if the mapcode is not a valid value
+     *
+     * @methodtype Assertion
+     * @methodproperties primitive
      */
     protected final void assertIsValidMapcodeString(String mapcode){
          if(!Mapcode.isValidMapcodeFormat(mapcode)){
