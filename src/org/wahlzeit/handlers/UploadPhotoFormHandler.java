@@ -29,6 +29,7 @@ import org.wahlzeit.model.*;
 import org.wahlzeit.model.bike.BikePhoto;
 import org.wahlzeit.model.bike.SingleSuspension;
 import org.wahlzeit.model.bike.Suspension;
+import org.wahlzeit.model.bike.SuspensionFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
@@ -102,9 +103,8 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			Photo photo = pm.createPhoto(file);
 
 			if(photo instanceof BikePhoto && suspension != null && suspensionTravel != null){
-				Suspension bikeSuspension = new SingleSuspension();
-				bikeSuspension.setSuspensionType(suspension);
-				bikeSuspension.setSuspensionTravel(Integer.parseInt(suspensionTravel), bikeSuspension.getSuspensionType());
+				
+				Suspension bikeSuspension = SuspensionFactory.createSuspension(suspension, suspensionTravel);
 				((BikePhoto)photo).setBikeSuspension(bikeSuspension);
 			}
 

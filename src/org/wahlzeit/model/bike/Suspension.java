@@ -15,5 +15,5 @@ public interface Suspension {
 
     public void setSuspensionTravel(int value, SuspensionType type);
 
-    public int getSuspensionTravel(SuspensionType type);
+    public String getSuspensionTravel(SuspensionType type);
 }

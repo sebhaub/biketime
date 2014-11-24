@@ -35,17 +35,15 @@ public class BikePhoto extends Photo {
         super.readFrom(rset);
 
         String susp = rset.getString(BIKE_SUSPENSION);
-        int trav = rset.getInt(BIKE_SUSPENSION_TRAVEL);
-
-        this.suspension = new SingleSuspension();
-        this.suspension.setSuspensionType(susp);
-        this.suspension.setSuspensionTravel(trav, suspension.getSuspensionType());
+        String trav = rset.getString(BIKE_SUSPENSION_TRAVEL);
+        
+        this.suspension = SuspensionFactory.createSuspension(susp, trav);
     }
 
     public void writeOn(ResultSet rset) throws SQLException{
         super.writeOn(rset);
         rset.updateString(BIKE_SUSPENSION, suspension.getSuspensionType().name());
-        rset.updateInt(BIKE_SUSPENSION_TRAVEL, suspension.getSuspensionTravel(suspension.getSuspensionType()));
+        rset.updateString(BIKE_SUSPENSION_TRAVEL, suspension.getSuspensionTravel(suspension.getSuspensionType()));
     }
     
     public void setBikeSuspension(Suspension value){

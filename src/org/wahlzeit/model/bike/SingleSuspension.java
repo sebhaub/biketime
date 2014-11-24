@@ -13,8 +13,8 @@ public class SingleSuspension extends BikeSuspension {
     }
 
     @Override
-    protected int doGetSuspension(SuspensionType type) {
-        return this.travel;
+    protected String doGetSuspension(SuspensionType type) {
+        return this.travel+"";
     }
 
     @Override

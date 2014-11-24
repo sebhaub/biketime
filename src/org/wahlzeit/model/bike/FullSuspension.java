@@ -7,6 +7,10 @@ public class FullSuspension extends BikeSuspension {
 
     private int frontTravel = 0;
     private int rearTravel = 0;
+    
+    public FullSuspension(){
+    	this.mSuspensionType = SuspensionType.Full;
+    }
 
     @Override
     protected void doSetSuspension(SuspensionType type, int value) {
@@ -21,15 +25,14 @@ public class FullSuspension extends BikeSuspension {
     }
 
     @Override
-    protected int doGetSuspension(SuspensionType type) {
+    protected String doGetSuspension(SuspensionType type) {
         switch (type){
             case Front:
-                return this.frontTravel;
+                return this.frontTravel+"";
             case Rear:
-                return this.rearTravel;
+                return this.rearTravel+"";
             default:
-                //should never be reached
-                return 0;
+            	return this.frontTravel+"|"+this.rearTravel;
         }
     }
 

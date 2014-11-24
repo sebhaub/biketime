@@ -33,7 +33,7 @@ CREATE TABLE photos (
 	latitude decimal,
 	longitude decimal,
 	suspension text,
-	suspension_travel integer
+	suspension_travel text
 );
 
 CREATE TABLE tags (

@@ -47,7 +47,7 @@ public abstract class BikeSuspension implements Suspension{
     }
 
     @Override
-    public int getSuspensionTravel(SuspensionType type) {
+    public String getSuspensionTravel(SuspensionType type) {
         assertHasSuspensionType(type);
         return doGetSuspension(type);
     }
@@ -57,6 +57,7 @@ public abstract class BikeSuspension implements Suspension{
     }
 
     protected void assertHasSuspensionType(SuspensionType type){
+    	if(this.mSuspensionType == SuspensionType.Full) return;
         if(this.mSuspensionType != type) throw new IllegalArgumentException();
     }
 
@@ -68,6 +69,6 @@ public abstract class BikeSuspension implements Suspension{
     }
 
     protected abstract void doSetSuspension(SuspensionType type, int value);
-    protected abstract int doGetSuspension(SuspensionType type);
+    protected abstract String doGetSuspension(SuspensionType type);
     protected abstract String doGetAsString();
 }
