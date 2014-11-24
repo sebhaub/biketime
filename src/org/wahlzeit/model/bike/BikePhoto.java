@@ -15,8 +15,7 @@ public class BikePhoto extends Photo {
     public static final String BIKE_SUSPENSION = "suspension";
     public static final String BIKE_SUSPENSION_TRAVEL = "suspension_travel";
 
-    protected Suspension suspension = new SingleSuspension();
-    protected int travel = 0;
+    protected Suspension suspension;
 
 
     public BikePhoto(){

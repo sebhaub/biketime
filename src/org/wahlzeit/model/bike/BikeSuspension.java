@@ -1,7 +1,10 @@
 package org.wahlzeit.model.bike;
 
-/**
- * Created by sebi on 23.11.14.
+/***
+ * The abstract Suspension class
+ * @invariant if no values are set, SuspensionType is None, and asString is callable
+ * @author sebi
+ *
  */
 public abstract class BikeSuspension implements Suspension{
 
