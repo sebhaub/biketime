@@ -26,6 +26,9 @@ import java.io.*;
 import org.wahlzeit.location.GPSLocation;
 import org.wahlzeit.location.Location;
 import org.wahlzeit.model.*;
+import org.wahlzeit.model.bike.BikePhoto;
+import org.wahlzeit.model.bike.SingleSuspension;
+import org.wahlzeit.model.bike.Suspension;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
@@ -68,7 +71,6 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 		String longitude = us.getAndSaveAsString(args, Photo.LONGITUDE);
 
 		Location mPhotoLocation;
-
 		//check if the values are doubles
 		if(latitude != null && longitude != null){
 			try {
@@ -84,6 +86,9 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			mPhotoLocation = new GPSLocation();
 		}
 
+		String suspension = us.getAndSaveAsString(args, BikePhoto.BIKE_SUSPENSION);
+		String suspensionTravel = us.getAndSaveAsString(args, BikePhoto.BIKE_SUSPENSION_TRAVEL);
+
 
 		if (!StringUtil.isLegalTagsString(tags)) {
 			us.setMessage(us.cfg().getInputIsInvalid());
@@ -95,6 +100,13 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			String sourceFileName = us.getAsString(args, "fileName");
 			File file = new File(sourceFileName);
 			Photo photo = pm.createPhoto(file);
+
+			if(photo instanceof BikePhoto && suspension != null && suspensionTravel != null){
+				Suspension bikeSuspension = new SingleSuspension();
+				bikeSuspension.setSuspensionType(suspension);
+				bikeSuspension.setSuspensionTravel(Integer.parseInt(suspensionTravel), bikeSuspension.getSuspensionType());
+				((BikePhoto)photo).setBikeSuspension(bikeSuspension);
+			}
 
 			String targetFileName = SysConfig.getBackupDir().asString() + photo.getId().asString();
 			createBackup(sourceFileName, targetFileName);

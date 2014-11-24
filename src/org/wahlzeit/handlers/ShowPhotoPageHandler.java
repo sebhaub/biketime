@@ -24,6 +24,7 @@ import java.util.*;
 
 import org.wahlzeit.location.Location;
 import org.wahlzeit.model.*;
+import org.wahlzeit.model.bike.BikePhoto;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
@@ -101,6 +102,11 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 			page.addString(Photo.KEYWORDS, tags.asString(false, ','));
 			page.addString(Photo.LOCATION, "GPS : " + loc.asString());
 			page.addString(Photo.MAPCODE, "MAPCODE : " + loc.getAsMapcodeString());
+
+			if(photo instanceof BikePhoto){
+				page.addString(BikePhoto.BIKE_SUSPENSION, ((BikePhoto)photo).getBikeSuspensionString());
+			}
+
 			us.addDisplayedPhoto(photo);
 		}
 		

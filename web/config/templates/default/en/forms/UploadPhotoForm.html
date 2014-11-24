@@ -13,6 +13,20 @@
 			<td class="twoCol2"><input type="text" name="tags" value="{$tags}" size="48" /></td>
 		</tr>
 		<tr>
+			<td class="twoCol1">Bike Suspension:&nbsp;</td>
+			<td class="twoCol2">Suspension Type:
+				<select name="suspension">
+                    <option value="None">No Suspension</option>
+                    <option value="Front">Front Suspension</option>
+                    <option value="Rear">Rear Suspension</option>
+                    <option value="Full">Full Suspension</option>
+                </select>
+			</td>
+			<td class="twoCol2">Travel in mm:
+				<input type="text" name="suspension_travel" value="{$travel}" size="24">
+			</td>
+		</tr>
+		<tr>
 			<td class="twoCol1">Photo location:&nbsp;</td>
 				<td class="twoCol2">Lat:
 					<input type="text" name="latitude" value="{$lat}" size="24">
@@ -21,6 +35,7 @@
 					<input type="text" name="longitude" value="{$lon}" size="24">
 				</td>
 		</tr>
+
 		<tr>
 			<td class="twoCol1">&nbsp;</td>
 			<td class="twoCol2"><input type="submit" name="upload" value="Upload!" /></td>
