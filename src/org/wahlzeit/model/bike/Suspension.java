@@ -27,14 +27,14 @@ public interface Suspension {
      * Sets the suspensiontype to type (see Enums.valueOf(String param)
      * @param type The name of the SuspensionType to set 
      */
-    public void setSuspensionType(String type);
+    public Suspension setSuspensionType(String type);
 
     /***
      * Sets the travel of a suspensiontype
      * @param value the travel in mm
      * @param type the SuspensionType 
      */
-    public void setSuspensionTravel(int value, SuspensionType type);
+    public Suspension setSuspensionTravel(int value, SuspensionType type);
 
     /***
      * Returns the SuspensionTravel for a given type
@@ -42,4 +42,9 @@ public interface Suspension {
      * @return
      */
     public String getSuspensionTravel(SuspensionType type);
+
+
+    public boolean equals(Object obj);
+
+    public int hashCode();
 }

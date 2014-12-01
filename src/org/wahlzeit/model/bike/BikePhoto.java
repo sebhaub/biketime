@@ -36,7 +36,7 @@ public class BikePhoto extends Photo {
         String susp = rset.getString(BIKE_SUSPENSION);
         String trav = rset.getString(BIKE_SUSPENSION_TRAVEL);
         
-        this.suspension = SuspensionFactory.createSuspension(susp, trav);
+        this.suspension = SuspensionFactory.Instance().createSuspension(susp, trav);
     }
 
     public void writeOn(ResultSet rset) throws SQLException{

@@ -5,24 +5,23 @@ package org.wahlzeit.model.bike;
  */
 public class FullSuspension extends BikeSuspension {
 
-    private int frontTravel = 0;
-    private int rearTravel = 0;
+    private final int frontTravel;
+    private final int rearTravel;
     
     public FullSuspension(){
-    	this.mSuspensionType = SuspensionType.Full;
+    	super(SuspensionType.Full);
+        this.frontTravel = 0;
+        this.rearTravel = 0;
     }
 
-    @Override
-    protected void doSetSuspension(SuspensionType type, int value) {
-        switch (type){
-            case Front:
-                this.frontTravel = value;
-                break;
-            case Rear:
-                this.rearTravel = value;
-                break;
-        }
+    public FullSuspension(int frontTravel, int rearTravel) {
+        super(SuspensionType.Full);
+        assertIsValidTravel(frontTravel);
+        assertIsValidTravel(rearTravel);
+        this.frontTravel = frontTravel;
+        this.rearTravel = rearTravel;
     }
+
 
     @Override
     protected String doGetSuspension(SuspensionType type) {

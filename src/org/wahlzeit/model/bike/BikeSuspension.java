@@ -3,18 +3,15 @@ package org.wahlzeit.model.bike;
 /***
  * The abstract Suspension class
  * @invariant if no values are set, SuspensionType is None, and asString is callable
+ * value-object
  * @author sebi
  *
  */
 public abstract class BikeSuspension implements Suspension{
 
-    protected SuspensionType mSuspensionType;
+    protected final SuspensionType mSuspensionType;
 
-    public BikeSuspension(){
-        this(SuspensionType.None);
-    }
-
-    public BikeSuspension(SuspensionType type){
+    protected BikeSuspension(SuspensionType type){
         this.mSuspensionType = type;
     }
 
@@ -37,16 +34,17 @@ public abstract class BikeSuspension implements Suspension{
         return this.mSuspensionType;
     }
 
+
     @Override
-    public final void setSuspensionType(String type){
+    public final Suspension setSuspensionType(String type){
         assertIsSuspensionType(type);
-        this.mSuspensionType = SuspensionType.valueOf(type);
+        return SuspensionFactory.Instance().createSuspension(type, this.getSuspensionTravel(SuspensionType.valueOf(type)));
     }
 
     @Override
-    public void setSuspensionTravel(int value, SuspensionType type) {
+    public Suspension setSuspensionTravel(int value, SuspensionType type) {
         assertHasSuspensionType(type);
-        doSetSuspension(type, value);
+        return SuspensionFactory.Instance().createSuspension(type.name(), value+"");
     }
 
     @Override
@@ -55,6 +53,32 @@ public abstract class BikeSuspension implements Suspension{
         return doGetSuspension(type);
     }
 
+    @Override
+    public final boolean equals(Object obj){
+        if(obj == null) {
+            return false;
+        }
+        if(!(obj.getClass().isInstance(this.getClass()))){
+            return false;
+        }
+        BikeSuspension susp = (BikeSuspension)obj;
+        if(susp.getSuspensionType() != this.getSuspensionType()) {
+            return false;
+        }
+        if(susp.getSuspensionTravel(susp.getSuspensionType()) != this.getSuspensionTravel(this.getSuspensionType())){
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 25;
+        hash = hash * 11 + this.getSuspensionType().hashCode();
+        hash = hash * 20 + this.getSuspensionTravel(this.getSuspensionType()).hashCode();
+        hash = hash * 14 + this.asString().hashCode();
+        return hash;
+    }
     protected void assertIsValidTravel(int value){
         if(value <= 0) throw new IllegalArgumentException();
     }
@@ -71,7 +95,6 @@ public abstract class BikeSuspension implements Suspension{
         return true;
     }
 
-    protected abstract void doSetSuspension(SuspensionType type, int value);
     protected abstract String doGetSuspension(SuspensionType type);
     protected abstract String doGetAsString();
 }

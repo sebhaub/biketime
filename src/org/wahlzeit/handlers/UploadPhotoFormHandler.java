@@ -104,7 +104,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 
 			if(photo instanceof BikePhoto && suspension != null && suspensionTravel != null){
 				
-				Suspension bikeSuspension = SuspensionFactory.createSuspension(suspension, suspensionTravel);
+				Suspension bikeSuspension = SuspensionFactory.Instance().createSuspension(suspension, suspensionTravel);
 				((BikePhoto)photo).setBikeSuspension(bikeSuspension);
 			}
 

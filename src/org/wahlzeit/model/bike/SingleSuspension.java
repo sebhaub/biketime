@@ -5,11 +5,17 @@ package org.wahlzeit.model.bike;
  */
 public class SingleSuspension extends BikeSuspension {
 
-    private int travel = 0;
+    private final int travel;
 
-    @Override
-    protected void doSetSuspension(SuspensionType type, int value) {
-        this.travel = value;
+    public SingleSuspension(SuspensionType type){
+        super(type);
+        this.travel = 0;
+    }
+
+    public SingleSuspension(SuspensionType type, int travel){
+        super(type);
+        assertIsValidTravel(travel);
+        this.travel = travel;
     }
 
     @Override
