@@ -11,10 +11,16 @@ public abstract class BikeSuspension implements Suspension{
 
     protected final SuspensionType mSuspensionType;
 
+    /***
+     * Protected constructor
+     * The subclasses have to call this one to initialize the final variable mSuspensiontype
+     * @param type the SuspensionType
+     */
     protected BikeSuspension(SuspensionType type){
         this.mSuspensionType = type;
     }
 
+    @Override
     public final boolean hasSuspension(){
         if(this.mSuspensionType != SuspensionType.None){
             return true;
@@ -22,6 +28,7 @@ public abstract class BikeSuspension implements Suspension{
         return false;
     }
 
+    @Override
     public final String asString(){
         if(this.mSuspensionType == SuspensionType.None){
             return "This Bike does not have any Suspension...";
@@ -30,29 +37,49 @@ public abstract class BikeSuspension implements Suspension{
     }
 
     @Override
-    public SuspensionType getSuspensionType() {
+    public final SuspensionType getSuspensionType() {
         return this.mSuspensionType;
     }
 
 
+    /***
+     * Since we have a value-object this method will not "set" a value on this instance
+     * but instead return a "new" instance with this suspensions travel and the setted type
+     * using the SuspensionFactory
+     * @param type The name of the SuspensionType to set
+     * @return a BikeSuspension Instance with the setted value
+     */
     @Override
     public final Suspension setSuspensionType(String type){
         assertIsSuspensionType(type);
         return SuspensionFactory.Instance().createSuspension(type, this.getSuspensionTravel(SuspensionType.valueOf(type)));
     }
 
+    /***
+     * Since we have a value-object this method will not "set" a value on this instance
+     * but instead return a "new" instance with this suspensions type and the setted travel
+     * using the SuspensionFactory
+     * @param type The name of the SuspensionType to set
+     * @return
+     */
     @Override
-    public Suspension setSuspensionTravel(int value, SuspensionType type) {
+    public final Suspension setSuspensionTravel(int value, SuspensionType type) {
         assertHasSuspensionType(type);
         return SuspensionFactory.Instance().createSuspension(type.name(), value+"");
     }
 
     @Override
-    public String getSuspensionTravel(SuspensionType type) {
+    public final String getSuspensionTravel(SuspensionType type) {
         assertHasSuspensionType(type);
         return doGetSuspension(type);
     }
 
+    /***
+     * Overriding objects equals method
+     *
+     * @param obj the object to check for equality
+     * @return true if the objects are equal, false otherwise
+     */
     @Override
     public final boolean equals(Object obj){
         if(obj == null) {
@@ -71,24 +98,28 @@ public abstract class BikeSuspension implements Suspension{
         return true;
     }
 
+    /***
+     * OVerriding objects hashcode method
+     * @return a hashcode built from the hashcodes of the class members
+     */
     @Override
-    public int hashCode() {
+    public final int hashCode() {
         int hash = 25;
         hash = hash * 11 + this.getSuspensionType().hashCode();
         hash = hash * 20 + this.getSuspensionTravel(this.getSuspensionType()).hashCode();
         hash = hash * 14 + this.asString().hashCode();
         return hash;
     }
-    protected void assertIsValidTravel(int value){
+    protected final void assertIsValidTravel(int value){
         if(value <= 0) throw new IllegalArgumentException();
     }
 
-    protected void assertHasSuspensionType(SuspensionType type){
+    protected final void assertHasSuspensionType(SuspensionType type){
     	if(this.mSuspensionType == SuspensionType.Full) return;
         if(this.mSuspensionType != type) throw new IllegalArgumentException();
     }
 
-    protected boolean assertIsSuspensionType(String value){
+    protected final boolean assertIsSuspensionType(String value){
         if(value == null || SuspensionType.valueOf(value) == null){
             return false;
         }

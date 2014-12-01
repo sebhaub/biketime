@@ -1,11 +1,11 @@
 package org.wahlzeit.model.bike;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 /***
  * This class acts as a Factory to create a Suspension instance
- * @author sebi
+ * It handles and manages the creation of the value objects of BikeSuspension
+ * * @author sebi
  *
  */
 public class SuspensionFactory {
@@ -26,7 +26,7 @@ public class SuspensionFactory {
 	}
 
 	/***
-	 * private constructor
+	 * private constructor --> singleton
 	 */
 	private SuspensionFactory(){
 		this.availableSuspensions = new HashMap<>();
@@ -39,7 +39,9 @@ public class SuspensionFactory {
 	private static String delims = "[|]";
 
 	/***
-	 * Creates and returns a new instance of a Suspension. The concrete type depends on the given params
+	 * Creates and returns a instance of a Suspension. The concrete type depends on the given params
+	 * If the value object is already created and stored inside our hashmap, we will return that one,
+	 * else we will add the newly created one to the hashmap for later reuse.
 	 * @param type The Suspensiontype
 	 * @param travel The Travel of the Suspension (combined if Full Suspension)
 	 * @return
