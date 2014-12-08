@@ -26,6 +26,32 @@ public class LocationTest{
         gpsLocation = new GPSLocation(latitude, longitude);
         mapcodeLocation = new MapcodeLocation(latitude,longitude);
     }
+    
+    @Test
+    public void testValueObject(){
+    	Location mGps = LocationFactory.getInstance().createGPSLocation(32, 12);
+    	Location otherGps = LocationFactory.getInstance().createGPSLocation(32, 12);
+    	assertTrue("Objects not equal", mGps.equals(otherGps));
+    	
+    	Location anotherGps = LocationFactory.getInstance().createGPSLocation(32, 13);
+    	assertTrue("Objects not equal", !mGps.equals(anotherGps));
+    	
+    	assertTrue("HashCode not equal", mGps.hashCode() == otherGps.hashCode());
+    	assertTrue("HashCode is equal", mGps.hashCode() != anotherGps.hashCode());
+    	
+    	Location mMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcode);
+    	Location otherMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcode);
+    	Location anotherMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcodeTwo);
+    	
+    	assertTrue("Objects not equal", mMapcode.equals(otherMapcode));
+    	assertTrue("Objects not equal", !mMapcode.equals(anotherMapcode));
+    	assertTrue("HashCode not equal", mMapcode.hashCode() == otherMapcode.hashCode());
+    	assertTrue("HashCode is equal", mMapcode.hashCode() != anotherMapcode.hashCode());
+    	
+
+
+
+    }
 
     @Test
     public void testMapCodeConstructors(){
