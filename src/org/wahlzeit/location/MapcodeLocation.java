@@ -10,16 +10,16 @@ public class MapcodeLocation extends AbstractLocation {
 
     private String mapcode;
 
-    public MapcodeLocation(double latitude, double longitude){
+    protected MapcodeLocation(double latitude, double longitude){
         assertIsValidLatitude(latitude);
         assertIsValidLongitude(longitude);
-        mapcode = MapcodeCodec.encodeToInternational(latitude,longitude).getMapcode();
+        doSetLocation(latitude, longitude);
         this.isLocationSet = true;
     }
 
-    public MapcodeLocation(String mapcode){
+    protected MapcodeLocation(String mapcode){
         assertIsValidMapcodeString(mapcode);
-        this.mapcode = mapcode;
+        doSetLocation(mapcode);
         this.isLocationSet = true;
     }
 

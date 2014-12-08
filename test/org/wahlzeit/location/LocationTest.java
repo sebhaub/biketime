@@ -51,7 +51,7 @@ public class LocationTest{
 
     @Test
     public void testGpsConstructors(){
-        Location mGpsLocation = new GPSLocation();
+        Location mGpsLocation = LocationFactory.getInstance().createGPSLocation(0, 0);;
         assertTrue("LatLong is false", mGpsLocation.getLatitude() == 0 && mGpsLocation.getLongitude() == 0);
         assertTrue("has location is not set", mGpsLocation.hasLocation());
 
@@ -109,45 +109,6 @@ public class LocationTest{
 
         assertTrue("Latitude should be " + latitude + " but is " + latVal, latRounded == latValRounded);
         assertTrue("Longitude should be " + longitude + " but is " + lonVal, lonRounded == lonValRounded);
-
-    }
-
-    @Test
-    public void testSetLocationOnMapcodeAsLatLon(){
-        Location mLocation = new MapcodeLocation(mapcode);
-        mLocation.setLocation(latTwo, lonTwo);
-        String mapc = mLocation.getAsMapcodeString();
-        assertTrue("Mapcode should be "+mapcodeTwo+ " but is "+mapc, mapc.equalsIgnoreCase(mapcodeTwo));
-    }
-
-    @Test
-    public void testSetLocationOnMapcodeAsMapcode(){
-        Location mLocation = new MapcodeLocation(mapcode);
-        mLocation.setLocation(mapcodeTwo);
-        String mapc = mLocation.getAsMapcodeString();
-        assertTrue("Mapcode should be "+mapcodeTwo+ " but is "+mapc, mapc.equalsIgnoreCase(mapcodeTwo));
-    }
-
-    @Test
-    public void testSetLocationOnGps(){
-        Location mLocation = new GPSLocation(latitude, longitude);
-        mLocation.setLocation(latTwo, lonTwo);
-        assertTrue("lat should be "+latTwo+" but is "+mLocation.getLatitude(), mLocation.getLatitude() == latTwo);
-        assertTrue("lon should be "+lonTwo+" but is "+mLocation.getLongitude(), mLocation.getLongitude() == lonTwo);
-
-    }
-
-    @Test
-    public void testIsEqualLocation(){
-        Location mGpsLoc = new GPSLocation(latitude, longitude);
-        Location mAnotherGpsLoc = new GPSLocation(latitude,longitude);
-        assertTrue("Should be equal but is not", mGpsLoc.isEqualLocation(mAnotherGpsLoc));
-        assertTrue("Should be equal but is not", mGpsLoc.isEqualLocation(mGpsLoc));
-        assertTrue("null could not be equal", !mGpsLoc.isEqualLocation(null));
-
-        mAnotherGpsLoc.setLocation(latTwo, longitude);
-        assertTrue("Should not be equal", !mGpsLoc.isEqualLocation(mAnotherGpsLoc));
-
 
     }
 

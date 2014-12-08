@@ -25,6 +25,7 @@ import java.io.*;
 
 import org.wahlzeit.location.GPSLocation;
 import org.wahlzeit.location.Location;
+import org.wahlzeit.location.LocationFactory;
 import org.wahlzeit.model.*;
 import org.wahlzeit.model.bike.BikePhoto;
 import org.wahlzeit.model.bike.SingleSuspension;
@@ -78,13 +79,13 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 				double lat = Double.parseDouble(latitude);
 				double lon = Double.parseDouble(longitude);
 
-				mPhotoLocation = new GPSLocation(lat, lon);
+				mPhotoLocation = LocationFactory.getInstance().createGPSLocation(lat, lon);
 
 			}catch (Exception e){
-				mPhotoLocation = new GPSLocation();
+				mPhotoLocation = LocationFactory.getInstance().createGPSLocation(0, 0);
 			}
 		}else{
-			mPhotoLocation = new GPSLocation();
+			mPhotoLocation = LocationFactory.getInstance().createGPSLocation(0,0);
 		}
 
 		String suspension = us.getAndSaveAsString(args, BikePhoto.BIKE_SUSPENSION);

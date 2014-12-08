@@ -13,25 +13,18 @@ public class GPSLocation extends AbstractLocation {
     private double longitude = 0;
 
     /***
-     * Initializes this GPSLocation with a lat / lon of 0 / 0
-     */
-    public GPSLocation(){
-        this(0,0);
-    }
-
-    /***
      * Initializes this GPSLocation with the given lat / lon
      * @param latitude
      * @param longitude
      */
-    public GPSLocation(double latitude, double longitude){
+    protected GPSLocation(double latitude, double longitude){
         assertIsValidLatitude(latitude);
         assertIsValidLongitude(longitude);
         doSetLocation(latitude,longitude);
         this.isLocationSet = true;
     }
 
-    public GPSLocation(String mapcode){
+    protected GPSLocation(String mapcode){
         assertIsValidMapcodeString(mapcode);
         doSetLocation(mapcode);
         this.isLocationSet = true;

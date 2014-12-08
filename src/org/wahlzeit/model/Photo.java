@@ -25,6 +25,7 @@ import java.net.*;
 
 import org.wahlzeit.location.GPSLocation;
 import org.wahlzeit.location.Location;
+import org.wahlzeit.location.LocationFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 
@@ -179,7 +180,7 @@ public class Photo extends DataObject {
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 		double latitude = rset.getDouble("latitude");
 		double longitude = rset.getDouble("longitude");
-		photoLocation = new GPSLocation(latitude, longitude);
+		photoLocation = LocationFactory.getInstance().createGPSLocation(latitude, longitude);;
 	}
 	
 	/**

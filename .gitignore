@@ -1,3 +1,6 @@
 /build
 /web/data/photos
 /web/WEB-INF/classes
+web/WEB-INF/lib/mapcode-1.40.2.jar
+web/WEB-INF/lib/slf4j-api-1.7.7.jar
+web/WEB-INF/lib/slf4j-simple-1.7.7.jar

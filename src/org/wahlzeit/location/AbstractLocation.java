@@ -86,33 +86,6 @@ public abstract class AbstractLocation implements Location{
     }
 
     /***
-     * Does set the location to the given mapcode
-     * Also does assert that the given mapcode is valid.
-     * @param mapcode the mapcode string which contains the location
-     * @methodtype Command
-     * @methodproperties Composed
-     */
-    public final void setLocation(String mapcode){
-        assertIsValidMapcodeString(mapcode);
-        doSetLocation(mapcode);
-    }
-
-    /***
-     * Sets the location to the given params.
-     * Also does assert that the params are valid ones.
-     * @param latitude
-     * @param longitude the longitude to set
-     * @methodtype Command
-     * @methodproperties Composed
-     */
-    public final void setLocation(double latitude, double longitude){
-        assertIsValidLatitude(latitude);
-        assertIsValidLongitude(longitude);
-        doSetLocation(latitude, longitude);
-    }
-
-
-    /***
      * Returns the latitude of this location
      * @return the latitude as a double
      *
@@ -145,25 +118,21 @@ public abstract class AbstractLocation implements Location{
        return doGetMapcodeString();
     }
 
-    /***
-     *
-     * @param other the other Location
-     * @return
-     * @methodtype comparison
-     * @methodproperties Composed
-     */
-    public final boolean isEqualLocation(Location other){
-        if(other == null){
-            return false;
-        }
-        if(this == other) {
-            return true;
-        }
-        if(getLongitude() == other.getLongitude() &&
-                getLatitude() == other.getLatitude()){
-            return true;
-        }
-        return false;
+    
+    public final int hashCode(){
+    	int start = 1;
+    	start = start * 9 + doGetAsString().hashCode();
+    	start += start * 10 + doGetLatitude();
+    	start += start * 11 + doGetLongitude();
+    	start += start * 12 + doGetMapcodeString().hashCode();
+    	return start;
+    }
+    
+    public final boolean equals(Object other){
+    	if(other == this){
+    		return true;
+    	}
+    	return false;
     }
 
 
