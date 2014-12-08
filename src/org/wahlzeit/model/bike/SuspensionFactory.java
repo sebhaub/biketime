@@ -61,17 +61,25 @@ public class SuspensionFactory {
 			
 		case Full:
 			String[] tokens = travel.split(delims);
-			
-			String front = tokens[0];
-			String rear = tokens[1];
-			int frontTravel = Integer.parseInt(front);
-			int rearTravel = Integer.parseInt(rear);
+			int frontTravel = 0;
+			int rearTravel = 0;
+			try{
+				String front = tokens[0];
+				String rear = tokens[1];
+				frontTravel = Integer.parseInt(front);
+				rearTravel = Integer.parseInt(rear);
+			}catch(Exception e){
+				throw new IllegalArgumentException("Can´t get travel of suspension");
+			}
+
 			if(frontTravel == 0 || rearTravel == 0){
 				result = new FullSuspension();
 			}else{
 				result = new FullSuspension(frontTravel, rearTravel);
 			}
 			break;
+			default:
+				throw new IllegalArgumentException("No valid Suspensiontype");
 		}
 
 		//if our hashmap already has this value, we dont neet to add it again

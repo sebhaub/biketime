@@ -47,10 +47,6 @@ public class LocationTest{
     	assertTrue("Objects not equal", !mMapcode.equals(anotherMapcode));
     	assertTrue("HashCode not equal", mMapcode.hashCode() == otherMapcode.hashCode());
     	assertTrue("HashCode is equal", mMapcode.hashCode() != anotherMapcode.hashCode());
-    	
-
-
-
     }
 
     @Test
