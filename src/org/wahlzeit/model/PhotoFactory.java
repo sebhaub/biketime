@@ -22,6 +22,7 @@ package org.wahlzeit.model;
 
 import java.sql.*;
 
+import org.wahlzeit.model.bike.AbstractPhotoFactory;
 import org.wahlzeit.model.bike.BikePhoto;
 import org.wahlzeit.services.*;
 
@@ -31,7 +32,7 @@ import org.wahlzeit.services.*;
  *
  */
 
-public class PhotoFactory {
+public class PhotoFactory extends AbstractPhotoFactory{
 	
 	/**
 	 * Hidden singleton instance; needs to be initialized from the outside.
@@ -80,7 +81,7 @@ public class PhotoFactory {
 	 */
 	public Photo createPhoto() {
 
-		return new BikePhoto();
+		return new Photo();
 	}
 	
 	/**
@@ -88,28 +89,16 @@ public class PhotoFactory {
 	 */
 	public Photo createPhoto(PhotoId id) {
 
-		return new BikePhoto(id);
+		return new Photo(id);
 	}
 	
 	/**
 	 * 
 	 */
 	public Photo createPhoto(ResultSet rs) throws SQLException {
-		return new BikePhoto(rs);
+		return new Photo(rs);
 	}
 	
-	/**
-	 * 
-	 */
-	public PhotoFilter createPhotoFilter() {
-		return new PhotoFilter();
-	}
-	
-	/**
-	 * 
-	 */
-	public PhotoTagCollector createPhotoTagCollector() {
-		return new PhotoTagCollector();
-	}
+
 
 }

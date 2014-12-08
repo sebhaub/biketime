@@ -25,6 +25,7 @@ import java.sql.*;
 import java.util.*;
 
 import org.wahlzeit.main.*;
+import org.wahlzeit.model.bike.BikePhotoFactory;
 import org.wahlzeit.services.*;
 
 /**
@@ -89,7 +90,7 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	public PhotoManager() {
-		photoTagCollector = PhotoFactory.getInstance().createPhotoTagCollector();
+		photoTagCollector = BikePhotoFactory.getInstance().createPhotoTagCollector();
 	}
 	
 	/**
@@ -137,7 +138,7 @@ public class PhotoManager extends ObjectManager {
 	 * 
 	 */
 	protected Photo createObject(ResultSet rset) throws SQLException {
-		return PhotoFactory.getInstance().createPhoto(rset);
+		return BikePhotoFactory.getInstance().createPhoto(rset);
 	}
 	
 	/**

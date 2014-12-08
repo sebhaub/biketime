@@ -25,6 +25,7 @@ import java.io.FileFilter;
 import java.sql.*;
 
 import org.wahlzeit.model.*;
+import org.wahlzeit.model.bike.BikePhotoFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.servlets.AbstractServlet;
 import org.wahlzeit.webparts.*;
@@ -51,7 +52,7 @@ public abstract class ModelMain extends AbstractMain {
 		
  		loadGlobals();
 
-		PhotoFactory.initialize();
+		BikePhotoFactory.initialize();
 	}
 	
 	/**
