@@ -5,6 +5,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.wahlzeit.location.GPSLocation;
 import org.wahlzeit.location.MapcodeLocation;
+import org.wahlzeit.model.bike.suspension.Suspension;
+import org.wahlzeit.model.bike.suspension.SuspensionFactory;
+import org.wahlzeit.model.bike.suspension.SuspensionType;
 
 import static junit.framework.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;

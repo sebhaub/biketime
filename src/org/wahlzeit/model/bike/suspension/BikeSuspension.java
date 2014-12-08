@@ -1,4 +1,4 @@
-package org.wahlzeit.model.bike;
+package org.wahlzeit.model.bike.suspension;
 
 /***
  * The abstract Suspension class

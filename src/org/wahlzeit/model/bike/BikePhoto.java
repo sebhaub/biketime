@@ -2,6 +2,8 @@ package org.wahlzeit.model.bike;
 
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
+import org.wahlzeit.model.bike.suspension.Suspension;
+import org.wahlzeit.model.bike.suspension.SuspensionFactory;
 import org.wahlzeit.utils.StringUtil;
 
 import java.sql.ResultSet;
