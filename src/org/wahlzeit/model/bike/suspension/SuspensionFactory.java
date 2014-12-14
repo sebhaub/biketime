@@ -2,6 +2,9 @@ package org.wahlzeit.model.bike.suspension;
 
 import java.util.HashMap;
 
+import org.wahlzeit.model.bike.BikePart;
+import org.wahlzeit.model.bike.BikePartFactory;
+
 /***
  * This class acts as a Factory to create a Suspension instance
  * It handles and manages the creation of the value objects of BikeSuspension
@@ -47,16 +50,21 @@ public class SuspensionFactory {
 	 * @return
 	 */
 	public Suspension createSuspension(String type, String travel){
+		return createSuspension(type, travel, "Unknown", "0.0", "Suspension");
+	}
+
+	public Suspension createSuspension(String type, String travel, String manufacturer, String price, String partType){
 		Suspension result = null;
 		SuspensionType suspensionType = SuspensionType.valueOf(type);
+		BikePart bikePartType = BikePartFactory.Instance().createBikePart(manufacturer, price, partType);
 		switch(suspensionType){
 		case None:
-			result = new SingleSuspension(SuspensionType.None);
+			result = new SingleSuspension(bikePartType,SuspensionType.None);
 			break;
 			
 		case Front:
 		case Rear:
-			result = new SingleSuspension(suspensionType, Integer.parseInt(travel));
+			result = new SingleSuspension(bikePartType,suspensionType, Integer.parseInt(travel));
 			break;
 			
 		case Full:
@@ -73,9 +81,9 @@ public class SuspensionFactory {
 			}
 
 			if(frontTravel == 0 || rearTravel == 0){
-				result = new FullSuspension();
+				result = new FullSuspension(bikePartType);
 			}else{
-				result = new FullSuspension(frontTravel, rearTravel);
+				result = new FullSuspension(bikePartType,frontTravel, rearTravel);
 			}
 			break;
 			default:
@@ -95,5 +103,4 @@ public class SuspensionFactory {
 		}
 		return result;
 	}
-
 }

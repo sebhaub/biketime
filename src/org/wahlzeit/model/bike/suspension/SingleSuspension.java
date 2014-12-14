@@ -1,5 +1,7 @@
 package org.wahlzeit.model.bike.suspension;
 
+import org.wahlzeit.model.bike.BikePart;
+
 /**
  * Created by sebi on 23.11.14.
  */
@@ -7,13 +9,13 @@ public class SingleSuspension extends BikeSuspension {
 
     private final int travel;
 
-    protected SingleSuspension(SuspensionType type){
-        super(type);
+    protected SingleSuspension(BikePart partType, SuspensionType type){
+        super(partType, type);
         this.travel = 0;
     }
 
-    protected SingleSuspension(SuspensionType type, int travel){
-        super(type);
+    protected SingleSuspension(BikePart partType, SuspensionType type, int travel){
+        super(partType, type);
         assertIsValidTravel(travel);
         this.travel = travel;
     }

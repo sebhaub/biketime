@@ -1,5 +1,7 @@
 package org.wahlzeit.model.bike.suspension;
 
+import org.wahlzeit.model.bike.BikePart;
+
 /***
  * The abstract Suspension class
  * @invariant if no values are set, SuspensionType is None, and asString is callable
@@ -9,6 +11,7 @@ package org.wahlzeit.model.bike.suspension;
  */
 public abstract class BikeSuspension implements Suspension{
 
+	protected BikePart mType;
     protected final SuspensionType mSuspensionType;
 
     /***
@@ -16,8 +19,9 @@ public abstract class BikeSuspension implements Suspension{
      * The subclasses have to call this one to initialize the final variable mSuspensiontype
      * @param type the SuspensionType
      */
-    protected BikeSuspension(SuspensionType type){
-        this.mSuspensionType = type;
+    protected BikeSuspension(BikePart partType, SuspensionType suspType){
+        this.mSuspensionType = suspType;
+        this.mType = partType;
     }
 
     @Override

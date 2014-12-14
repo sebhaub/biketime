@@ -1,5 +1,7 @@
 package org.wahlzeit.model.bike.suspension;
 
+import org.wahlzeit.model.bike.BikePart;
+
 /**
  * Created by sebi on 23.11.14.
  */
@@ -8,14 +10,14 @@ public class FullSuspension extends BikeSuspension {
     private final int frontTravel;
     private final int rearTravel;
     
-    public FullSuspension(){
-    	super(SuspensionType.Full);
+    protected FullSuspension(BikePart partType){
+    	super(partType, SuspensionType.Full);
         this.frontTravel = 0;
         this.rearTravel = 0;
     }
 
-    public FullSuspension(int frontTravel, int rearTravel) {
-        super(SuspensionType.Full);
+    protected FullSuspension(BikePart partType, int frontTravel, int rearTravel) {
+        super(partType, SuspensionType.Full);
         assertIsValidTravel(frontTravel);
         assertIsValidTravel(rearTravel);
         this.frontTravel = frontTravel;
