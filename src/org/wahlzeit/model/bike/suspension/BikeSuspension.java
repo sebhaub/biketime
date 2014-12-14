@@ -31,13 +31,19 @@ public abstract class BikeSuspension implements Suspension{
         }
         return false;
     }
+    
+    @Override
+    public final BikePart getType(){
+    	return this.mType;
+    }
 
     @Override
     public final String asString(){
         if(this.mSuspensionType == SuspensionType.None){
             return "This Bike does not have any Suspension...";
         }
-        return doGetAsString();
+        return doGetAsString()+
+        		"\n [Manufacturer is "+mType.getManufacturer()+" Price is "+mType.getPrice()+"]";
     }
 
     @Override

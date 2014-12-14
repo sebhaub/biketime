@@ -1,9 +1,17 @@
 package org.wahlzeit.model.bike.suspension;
 
+import org.wahlzeit.model.bike.BikePart;
+
 /**
  * Created by sebi on 23.11.14.
  */
 public interface Suspension {
+	
+	/***
+	 * 
+	 * @return the type-object of this implementation
+	 */
+	public BikePart getType();
 
 	/***
 	 * 
