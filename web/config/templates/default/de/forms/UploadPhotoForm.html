@@ -13,17 +13,16 @@
 			<td class="twoCol2"><input type="text" name="tags" value="{$tags}" size="48" /></td>
 		</tr>
 		<tr>
-			<td class="twoCol1">Photo location:&nbsp;</td>
-			<td class="twoCol2">Lat:
-				<input type="text" name="latitude" value="{$lat}" size="24">
-			</td>
-			<td class="twoCol2">Lon:
-				<input type="text" name="longitude" value="{$lon}" size="24">
-			</td>
+			<td class="twoCol1">Latitude:&nbsp;</td>
+			<td class="twoCol2"><input type="text" name="latitude" value="{$lat}" size="48" /></td>
+		</tr>
+		<tr>
+			<td class="twoCol1">Longitude:&nbsp;</td>
+			<td class="twoCol2"><input type="text" name="longitude" value="{$lon}" size="48" /></td>
 		</tr>
 		<tr>
 			<td class="twoCol1">Bike Suspension:&nbsp;</td>
-			<td class="twoCol2">Suspension Type:
+			<td class="twoCol2">&nbsp;
 				<select name="suspension">
                     <option value="None">No Suspension</option>
                     <option value="Front">Front Suspension</option>
@@ -31,9 +30,29 @@
                     <option value="Full">Full Suspension</option>
                 </select>
 			</td>
-			<td class="twoCol2">Front Travel in mm (if Front and Rear enter like front|rear):
-				<input type="text" name="suspension_travel" value="{$travel}" size="24">
+		</tr>
+		<tr>
+		
+				<td class="twoCol1">Travel in mm (if Front and Rear enter like front|rear):&nbsp;</td>
+				<td class="twoCol2">
+					<input type="text" name="suspension_travel" value="{$travel}" size="24">
+				</td>
+		</tr>	
+		<tr>
+			<td class="twoCol1">Part Type:&nbsp;</td>
+			<td class="twoCol2">&nbsp;
+				<select name="parttype">
+                    <option value="Suspension">Suspension</option>
+                </select>
 			</td>
+		</tr>		
+		<tr>
+			<td class="twoCol1">Price in euro:&nbsp;</td>
+			<td class="twoCol2"><input type="text" name="price" value="{$price}" size="48" /></td>
+		</tr>
+		<tr>
+			<td class="twoCol1">Manufacturer:&nbsp;</td>
+			<td class="twoCol2"><input type="text" name="manufacturer" value="{$manufacturer}" size="48" /></td>
 		</tr>
 		<tr>
 			<td class="twoCol1">&nbsp;</td>
