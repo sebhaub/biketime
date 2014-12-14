@@ -14,9 +14,9 @@ import java.sql.SQLException;
  */
 public class BikePhoto extends Photo {
 
-    public static final String BIKEPART = "bikepart";
-    public static final String BIKEPART_MANUFACTURER = "bikepart_manufacturer";
-    public static final String BIKEPART_PRICE = "bikepart_price";
+    public static final String BIKEPART = "parttype";
+    public static final String BIKEPART_MANUFACTURER = "manufacturer";
+    public static final String BIKEPART_PRICE = "price";
 
     public static final String BIKE_SUSPENSION = "suspension";
     public static final String BIKE_SUSPENSION_TRAVEL = "suspension_travel";

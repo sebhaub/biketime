@@ -32,9 +32,9 @@ CREATE TABLE photos (
 	creation_time bigint,
 	latitude decimal,
 	longitude decimal,
-	bikepart text,
-	bikepart_manufacturer text,
-	bikepart_price text,
+	parttype text,
+	manufacturer text,
+	price text,
 	suspension text,
 	suspension_travel text
 );

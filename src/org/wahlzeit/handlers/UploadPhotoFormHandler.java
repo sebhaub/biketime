@@ -88,6 +88,10 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			mPhotoLocation = LocationFactory.getInstance().createGPSLocation(0,0);
 		}
 
+		String bikepartType = us.getAndSaveAsString(args, BikePhoto.BIKEPART);
+		String manufacturer = us.getAndSaveAsString(args, BikePhoto.BIKEPART_MANUFACTURER);
+		String price = us.getAndSaveAsString(args, BikePhoto.BIKEPART_PRICE);
+		
 		String suspension = us.getAndSaveAsString(args, BikePhoto.BIKE_SUSPENSION);
 		String suspensionTravel = us.getAndSaveAsString(args, BikePhoto.BIKE_SUSPENSION_TRAVEL);
 
@@ -105,7 +109,17 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 
 			if(photo instanceof BikePhoto && suspension != null && suspensionTravel != null){
 				
-				Suspension bikeSuspension = SuspensionFactory.Instance().createSuspension(suspension, suspensionTravel);
+				Suspension bikeSuspension = null;
+				if(bikepartType.equalsIgnoreCase("") 
+						|| manufacturer.equalsIgnoreCase("") 
+						|| price.equalsIgnoreCase("") )
+				{
+					bikeSuspension = SuspensionFactory.Instance().
+							createSuspension(suspension, suspensionTravel);
+				}else{
+					bikeSuspension = SuspensionFactory.Instance().
+							createSuspension(suspension, suspensionTravel, manufacturer, price, bikepartType);
+				}
 				((BikePhoto)photo).setBikeSuspension(bikeSuspension);
 			}
 
