@@ -44,7 +44,13 @@ public class BikePartFactory {
 		BikePart result = null;
 		BikePartType bikePartType = BikePartType.valueOf(partType);
 		switch(bikePartType){
+			case Brake:
+			case Wheel:
+			case Chain:
+			case Tire:
+			case Pedal:
 			case Suspension:
+			case Frame:
 				result = new BikePart(fabricator, price, bikePartType);
 				break;
 			default:
