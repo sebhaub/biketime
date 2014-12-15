@@ -1,6 +1,12 @@
 package org.wahlzeit.model.bike;
 
-public class BikePart {
+/***
+ * This is a type-object also implemented as value-type due to protected constructor 
+ * and a instance tracking factory
+ * @author sebi
+ *
+ */
+public final class BikePart {
 	
 	private String fabricator = "";
 	private String price = "";
@@ -35,5 +41,13 @@ public class BikePart {
 		start += 3*price.hashCode();
 		start += 27*type.hashCode();
 		return start;
+	}
+	
+	@Override
+	public boolean equals(Object other){
+		if(this == other){
+			return true;
+		}
+		return false;
 	}
 }
