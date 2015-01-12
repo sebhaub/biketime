@@ -4,10 +4,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.wahlzeit.model.Photo;
-import org.wahlzeit.model.PhotoFactory;
 import org.wahlzeit.model.PhotoId;
 import org.wahlzeit.services.SysLog;
 
+/**
+ * @collaboration BikePhoto Factory
+ * @role Manager
+ */
 public class BikePhotoFactory extends AbstractPhotoFactory{
 	/**
 	 * Hidden singleton instance; needs to be initialized from the outside.

@@ -3,6 +3,12 @@ package org.wahlzeit.model.bike;
 /***
  * This is a type-object also implemented as value-type due to protected constructor 
  * and a instance tracking factory
+ * @collaboration BikePhoto
+ * @role Domain Object
+ * @collaboration BikePart Type-Object
+ * @role Type Object
+ * @collaboration BikePart Factory
+ * @role Domain Object
  * @author sebi
  *
  */

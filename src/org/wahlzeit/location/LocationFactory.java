@@ -2,6 +2,10 @@ package org.wahlzeit.location;
 
 import java.util.HashMap;
 
+/**
+ * @collaboration photo / Location
+ * @role Manager
+ */
 public final class LocationFactory {
 	
 	private static LocationFactory instance = null;

@@ -4,6 +4,8 @@ import org.wahlzeit.model.bike.BikePart;
 
 /**
  * Created by sebi on 23.11.14.
+ * @collaboration BikePart Type-Object
+ * @role BaseObject
  */
 public interface Suspension {
 	

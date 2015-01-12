@@ -5,6 +5,10 @@ import java.util.HashMap;
 /***
  * This class acts as a Factory to create a Suspension instance
  * It handles and manages the creation of the value objects of BikeSuspension
+ * @collaboration BikePart TypeObject
+ * @role Manager
+ * @collaboration BikePart Factory
+ * @role Manager
  * * @author sebi
  *
  */

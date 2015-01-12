@@ -11,6 +11,14 @@ import java.sql.SQLException;
 
 /**
  * Created by sebi on 23.11.14.
+ * @collaboration Suspension Factory
+ * @role Client
+ * @collaboration BikePart TypeObject
+ * @role Client
+ * @collaboration BikePhoto Factory
+ * @role Domain Object
+ * @collaboration Serializer
+ * @role Domain-object
  */
 public class BikePhoto extends Photo {
 

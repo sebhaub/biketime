@@ -2,14 +2,11 @@ package org.wahlzeit.location;
 
 /**
  * Created by sebi on 07.11.14.
+ * @collaboration photo / Location
+ * @role domain object
+ * @role
  */
 public interface Location {
-
-    /***
-     * Human readable respresentation
-     * @return a human readable String of the location
-     */
-    public String asString();
 
     /***
      *
@@ -30,9 +27,18 @@ public interface Location {
      */
     public double getLongitude();
 
+
+    /***
+     * Human readable respresentation
+     * @return a human readable String of the location
+     * @collaboration photo caption
+     */
+    public String asString();
+
     /***
      *
      * @return The current location encoded as a mapcode string
+     * @collaboration photo caption
      */
     public String getAsMapcodeString();
     

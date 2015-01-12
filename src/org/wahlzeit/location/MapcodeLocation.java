@@ -4,7 +4,9 @@ import com.mapcode.MapcodeCodec;
 import com.mapcode.UnknownMapcodeException;
 
 /**
- * Created by sebi on 07.11.14.
+ * Created by sebi on 07.11.14., *
+ *  @collaboration photo / Location
+ *  @role Value class
  */
 public class MapcodeLocation extends AbstractLocation {
 

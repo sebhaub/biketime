@@ -8,6 +8,10 @@ import org.wahlzeit.model.bike.BikePartFactory;
 /***
  * This class acts as a Factory to create a Suspension instance
  * It handles and manages the creation of the value objects of BikeSuspension
+ * @collaboration Suspension Factory
+ * @role Manager
+ * @collaboration BikePart Factory
+ * @role Client
  * * @author sebi
  *
  */

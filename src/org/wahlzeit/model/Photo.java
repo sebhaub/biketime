@@ -33,6 +33,8 @@ import org.wahlzeit.utils.*;
  * A photo represents a user-provided (uploaded) photo.
  * 
  * @author dirkriehle
+ * @collaboration Photo / Location
+ * @role Client
  *
  */
 public class Photo extends DataObject {
