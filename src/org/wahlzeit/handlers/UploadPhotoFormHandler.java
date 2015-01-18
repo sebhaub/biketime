@@ -137,8 +137,11 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
             StringBuffer sb = UserLog.createActionEntry("UploadPhoto");
             UserLog.addCreatedObject(sb, "Photo", photo.getId().asString());
             UserLog.log(sb);
-
-            us.setTwoLineMessage(us.cfg().getPhotoUploadSucceeded(), us.cfg().getKeepGoing());
+            if(mPhotoLocation == null){
+                us.setThreeLineMessage(us.cfg().getPhotoUploadSucceeded(), us.cfg().getPhotoUploadLocationError(), us.cfg().getKeepGoing());
+            }else{
+                us.setTwoLineMessage(us.cfg().getPhotoUploadSucceeded(), us.cfg().getKeepGoing());
+            }
         } catch (Exception ex) {
             SysLog.logThrowable(ex);
             us.setMessage(us.cfg().getPhotoUploadFailed());

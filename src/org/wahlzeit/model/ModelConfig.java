@@ -146,6 +146,7 @@ public interface ModelConfig extends Configuration {
 	// UPLOAD_PHOTO_FORM
 	public String getPhotoUploadFailed();
 	public String getPhotoUploadSucceeded();
+	public String getPhotoUploadLocationError();
 
 	// LOGOUT_PAGE
 	public String getLogoutSucceeded();
