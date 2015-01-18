@@ -44,7 +44,7 @@ public class BikePartFactory {
 	 * @param travel The Travel of the Suspension (combined if Full Suspension)
 	 * @return
 	 */
-	public BikePart createBikePart(String fabricator, String price, String partType){
+	public BikePart createBikePart(String fabricator, String price, String partType) throws BikePartInitializationException{
 		BikePart result = null;
 		BikePartType bikePartType = BikePartType.valueOf(partType);
 		switch(bikePartType){
@@ -55,10 +55,14 @@ public class BikePartFactory {
 			case Pedal:
 			case Suspension:
 			case Frame:
-				result = new BikePart(fabricator, price, bikePartType);
+				try {
+					result = new BikePart(fabricator, price, bikePartType);
+				}catch (IllegalArgumentException e){
+					throw new BikePartInitializationException(e.getMessage());
+				}
 				break;
 			default:
-				throw new IllegalArgumentException("No valid Suspensiontype");
+				throw new BikePartInitializationException("No valid Suspensiontype");
 		}
 
 		//if our hashmap already has this value, we dont neet to add it again

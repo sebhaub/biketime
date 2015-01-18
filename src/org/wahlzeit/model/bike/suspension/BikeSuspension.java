@@ -1,6 +1,7 @@
 package org.wahlzeit.model.bike.suspension;
 
 import org.wahlzeit.model.bike.BikePart;
+import org.wahlzeit.model.bike.BikePartInitializationException;
 
 /***
  * The abstract Suspension class
@@ -60,7 +61,7 @@ public abstract class BikeSuspension implements Suspension{
      * @return a BikeSuspension Instance with the setted value
      */
     @Override
-    public final Suspension setSuspensionType(String type){
+    public final Suspension setSuspensionType(String type) throws BikePartInitializationException{
         assertIsSuspensionType(type);
         return SuspensionFactory.Instance().createSuspension(type, this.getSuspensionTravel(SuspensionType.valueOf(type)));
     }
@@ -73,7 +74,7 @@ public abstract class BikeSuspension implements Suspension{
      * @return
      */
     @Override
-    public final Suspension setSuspensionTravel(int value, SuspensionType type) {
+    public final Suspension setSuspensionTravel(int value, SuspensionType type) throws BikePartInitializationException{
         assertHasSuspensionType(type);
         return SuspensionFactory.Instance().createSuspension(type.name(), value+"");
     }

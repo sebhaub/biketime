@@ -25,7 +25,7 @@ public class BikePartTest{
     }
     
     @Test
-    public void testTypeObjectEqualDifferentType(){
+    public void testTypeObjectEqualDifferentType() throws BikePartInitializationException{
     	BikePart partA = BikePartFactory.Instance().createBikePart(manufacturerFox, priceA, partTypeFrame);
     	BikePart partB = BikePartFactory.Instance().createBikePart(manufacturerFox, priceA, partTypeFrame);
     	
@@ -33,7 +33,7 @@ public class BikePartTest{
     }
     
     @Test
-    public void testTypeObjectNotEqualDifferentType(){
+    public void testTypeObjectNotEqualDifferentType() throws BikePartInitializationException{
     	BikePart partA = BikePartFactory.Instance().createBikePart(manufacturerFox, priceA, partTypeFrame);
     	BikePart partB = BikePartFactory.Instance().createBikePart(manufacturerRockShox, priceA, partTypeFrame);
     	
@@ -41,7 +41,7 @@ public class BikePartTest{
     }
     
     @Test
-    public void testGetValues(){
+    public void testGetValues() throws BikePartInitializationException{
     	BikePart partA = BikePartFactory.Instance().createBikePart(manufacturerFox, priceA, partTypeFrame);
     	
     	assertTrue("Manufacturer wrong!", partA.getManufacturer().equals(manufacturerFox));
@@ -51,7 +51,7 @@ public class BikePartTest{
     }
     
     @Test
-    public void testTwoSuspensionsEqual(){
+    public void testTwoSuspensionsEqual() throws BikePartInitializationException{
     	Suspension foxSuspensionFull = SuspensionFactory.Instance().
     			createSuspension("Full", "180|120", manufacturerFox, priceA, partTypeSuspension);
     	Suspension foxSuspensionFront = SuspensionFactory.Instance().
@@ -61,7 +61,7 @@ public class BikePartTest{
     }
     
     @Test
-    public void testTwoSuspensionsNotEqual(){
+    public void testTwoSuspensionsNotEqual() throws BikePartInitializationException{
     	Suspension foxSuspensionFull = SuspensionFactory.Instance().
     			createSuspension("Full", "180|120", manufacturerFox, priceA, partTypeSuspension);
     	Suspension foxSuspensionFront = SuspensionFactory.Instance().
@@ -69,21 +69,31 @@ public class BikePartTest{
     	
     	assertTrue("Type-Objects are equal!", !foxSuspensionFull.getType().equals(foxSuspensionFront.getType()));
     }
-    
-    @Test
-    public void testTypeObjectEqualSuspensionType(){
+
+	@Test
+    public void testTypeObjectEqualSuspensionType() throws BikePartInitializationException{
     	BikePart partA = BikePartFactory.Instance().createBikePart(manufacturerFox, priceA, partTypeSuspension);
     	Suspension foxSuspension = SuspensionFactory.Instance().
     			createSuspension("Full", "180|120", manufacturerFox, priceA, partTypeSuspension);
     	
     	assertTrue("Type-Objects are not equal!", partA.equals(foxSuspension.getType()));
     }
-    
-    @Test
-    public void testTypeObjectNotEqualSuspensionType(){
+
+	@Test
+    public void testTypeObjectNotEqualSuspensionType() throws BikePartInitializationException{
     	BikePart partA = BikePartFactory.Instance().createBikePart(manufacturerFox, priceA, partTypeSuspension);
     	Suspension foxSuspension = SuspensionFactory.Instance().
     			createSuspension("Full", "180|120", manufacturerRockShox, priceA, partTypeSuspension);
     	assertTrue("Type-Objects are equal!", !partA.equals(foxSuspension.getType()));
     }
+
+	@Test(expected = BikePartInitializationException.class)
+	public void testBikePartInitializationException() throws BikePartInitializationException{
+		BikePart partA = BikePartFactory.Instance().createBikePart(manufacturerFox, "-10", partTypeSuspension);
+	}
+
+	@Test(expected = BikePartInitializationException.class)
+	public void testSuspensionBikePartInitializationException() throws BikePartInitializationException{
+		Suspension suspA = SuspensionFactory.Instance().createSuspension(SuspensionType.Front.name(), "-10");
+	}
 }

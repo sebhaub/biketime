@@ -20,7 +20,7 @@ public class BikeDomainTest{
     }
     
     @Test
-    public void testFactoryFull(){
+    public void testFactoryFull() throws BikePartInitializationException{
     	Suspension fullSuspension = SuspensionFactory.Instance().createSuspension("Full", "120|100");
     	assertTrue("Travel not correct", fullSuspension.getSuspensionTravel(SuspensionType.Front).equalsIgnoreCase(120+""));
     	assertTrue("Travel not correct", fullSuspension.getSuspensionTravel(SuspensionType.Rear).equalsIgnoreCase(100+""));
@@ -30,30 +30,30 @@ public class BikeDomainTest{
     }
     
     @Test
-    public void testFactoryFront(){
+    public void testFactoryFront() throws BikePartInitializationException{
     	Suspension front = SuspensionFactory.Instance().createSuspension("Front", "120");
     	assertTrue("Travel not correct", front.getSuspensionTravel(SuspensionType.Front).equalsIgnoreCase(120+""));
     }
 
     @Test
-    public void testFactoryRear(){
+    public void testFactoryRear() throws BikePartInitializationException{
     	Suspension front = SuspensionFactory.Instance().createSuspension("Rear", "100");
     	assertTrue("Travel not correct", front.getSuspensionTravel(SuspensionType.Rear).equalsIgnoreCase(100+""));
     }
     
     @Test
-    public void testFactoryNone(){
+    public void testFactoryNone() throws BikePartInitializationException{
     	Suspension front = SuspensionFactory.Instance().createSuspension("None", "100");
     	assertTrue("Travel not correct", front.hasSuspension() == false);
     }
     
-    @Test(expected = IllegalArgumentException.class)
-    public void testFactoryFullException(){
+    @Test(expected = BikePartInitializationException.class)
+    public void testFactoryFullException() throws BikePartInitializationException{
     	Suspension front = SuspensionFactory.Instance().createSuspension("Full", "120|||");
     }
     
-    @Test(expected = IllegalArgumentException.class)
-    public void testFactoryWrongType(){
+    @Test(expected = BikePartInitializationException.class)
+    public void testFactoryWrongType() throws BikePartInitializationException{
     	Suspension front = SuspensionFactory.Instance().createSuspension("bla", "120");
     }
     

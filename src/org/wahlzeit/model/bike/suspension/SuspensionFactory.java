@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import org.wahlzeit.model.bike.BikePart;
 import org.wahlzeit.model.bike.BikePartFactory;
+import org.wahlzeit.model.bike.BikePartInitializationException;
 
 /***
  * This class acts as a Factory to create a Suspension instance
@@ -53,13 +54,18 @@ public class SuspensionFactory {
 	 * @param travel The Travel of the Suspension (combined if Full Suspension)
 	 * @return
 	 */
-	public Suspension createSuspension(String type, String travel){
+	public Suspension createSuspension(String type, String travel) throws BikePartInitializationException{
 		return createSuspension(type, travel, "Unknown", "0.0", "Suspension");
 	}
 
-	public Suspension createSuspension(String type, String travel, String manufacturer, String price, String partType){
+	public Suspension createSuspension(String type, String travel, String manufacturer, String price, String partType) throws BikePartInitializationException{
 		Suspension result = null;
-		SuspensionType suspensionType = SuspensionType.valueOf(type);
+		SuspensionType suspensionType;
+		try {
+			suspensionType = SuspensionType.valueOf(type);
+		}catch (IllegalArgumentException e){
+			throw new BikePartInitializationException("No valid Suspensiontype");
+		}
 		BikePart bikePartType = BikePartFactory.Instance().createBikePart(manufacturer, price, partType);
 		switch(suspensionType){
 		case None:
@@ -81,7 +87,7 @@ public class SuspensionFactory {
 				frontTravel = Integer.parseInt(front);
 				rearTravel = Integer.parseInt(rear);
 			}catch(Exception e){
-				throw new IllegalArgumentException("Can´t get travel of suspension");
+				throw new BikePartInitializationException("Can´t get travel of suspension");
 			}
 
 			if(frontTravel == 0 || rearTravel == 0){
@@ -91,7 +97,7 @@ public class SuspensionFactory {
 			}
 			break;
 			default:
-				throw new IllegalArgumentException("No valid Suspensiontype");
+				throw new BikePartInitializationException("No valid Suspensiontype");
 		}
 
 		//if our hashmap already has this value, we dont neet to add it again

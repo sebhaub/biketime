@@ -29,6 +29,7 @@ public class BikePhoto extends Photo {
     public static final String BIKE_SUSPENSION = "suspension";
     public static final String BIKE_SUSPENSION_TRAVEL = "suspension_travel";
 
+    boolean hasSuspension = false;
     protected Suspension suspension;
 
 
@@ -47,34 +48,46 @@ public class BikePhoto extends Photo {
     public void readFrom(ResultSet rset) throws SQLException{
         super.readFrom(rset);
 
-        String bikepartType = rset.getString(BIKEPART);
-        String bikepartManufacturer = rset.getString(BIKEPART_MANUFACTURER);
-        String bikepartPrice = rset.getString(BIKEPART_PRICE);
-        String susp = rset.getString(BIKE_SUSPENSION);
-        String trav = rset.getString(BIKE_SUSPENSION_TRAVEL);
-        
-        this.suspension = SuspensionFactory.Instance().createSuspension
-        		(susp, 
-        		trav, 
-        		bikepartManufacturer,
-        		bikepartPrice,
-        		bikepartType);
+        String bikepartType = rset.getObject(BIKEPART) != null ? rset.getString(BIKEPART) : null;
+        String bikepartManufacturer = rset.getObject(BIKEPART_MANUFACTURER) != null ? rset.getString(BIKEPART_MANUFACTURER) : null;
+        String bikepartPrice = rset.getObject(BIKEPART_PRICE) != null ? rset.getString(BIKEPART_PRICE) : null;
+        String susp = rset.getObject(BIKE_SUSPENSION) != null ? rset.getString(BIKE_SUSPENSION) : null;
+        String trav = rset.getObject(BIKE_SUSPENSION_TRAVEL) != null ? rset.getString(BIKE_SUSPENSION_TRAVEL) : null;
+
+        try {
+            this.suspension = SuspensionFactory.Instance().createSuspension
+                    (susp,
+                            trav,
+                            bikepartManufacturer,
+                            bikepartPrice,
+                            bikepartType);
+            hasSuspension = true;
+        }catch (BikePartInitializationException e){
+
+        }
     }
 
     public void writeOn(ResultSet rset) throws SQLException{
         super.writeOn(rset);
-        
-        rset.updateString(BIKEPART, suspension.getType().getPartTypeAsString());
-        rset.updateString(BIKEPART_MANUFACTURER, suspension.getType().getManufacturer());
-        rset.updateString(BIKEPART_PRICE, suspension.getType().getPrice());
 
-        rset.updateString(BIKE_SUSPENSION, suspension.getSuspensionType().name());
-        rset.updateString(BIKE_SUSPENSION_TRAVEL, suspension.getSuspensionTravel(suspension.getSuspensionType()));
+        if(hasSuspension) {
+            rset.updateString(BIKEPART, suspension.getType().getPartTypeAsString());
+            rset.updateString(BIKEPART_MANUFACTURER, suspension.getType().getManufacturer());
+            rset.updateString(BIKEPART_PRICE, suspension.getType().getPrice());
+
+            rset.updateString(BIKE_SUSPENSION, suspension.getSuspensionType().name());
+            rset.updateString(BIKE_SUSPENSION_TRAVEL, suspension.getSuspensionTravel(suspension.getSuspensionType()));
+        }
     }
     
     public void setBikeSuspension(Suspension value){
     	this.suspension = value;
+        hasSuspension = true;
     	incWriteCount();
+    }
+
+    public boolean hasSuspension(){
+        return hasSuspension;
     }
 
     public Suspension getBikeSuspension(){
@@ -82,6 +95,9 @@ public class BikePhoto extends Photo {
     }
 
     public String getBikeSuspensionString(){
+        if(!hasSuspension){
+            return "No Suspension";
+        }
         return this.suspension.asString();
     }
 

@@ -1,6 +1,7 @@
 package org.wahlzeit.model.bike.suspension;
 
 import org.wahlzeit.model.bike.BikePart;
+import org.wahlzeit.model.bike.BikePartInitializationException;
 
 /**
  * Created by sebi on 23.11.14.
@@ -14,9 +15,13 @@ public class SingleSuspension extends BikeSuspension {
         this.travel = 0;
     }
 
-    protected SingleSuspension(BikePart partType, SuspensionType type, int travel){
+    protected SingleSuspension(BikePart partType, SuspensionType type, int travel) throws BikePartInitializationException{
         super(partType, type);
-        assertIsValidTravel(travel);
+        try {
+            assertIsValidTravel(travel);
+        }catch (IllegalArgumentException e){
+            throw new BikePartInitializationException(e.getMessage());
+        }
         this.travel = travel;
     }
 

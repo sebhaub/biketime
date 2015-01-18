@@ -1,5 +1,7 @@
 package org.wahlzeit.model.bike;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
+
 /***
  * This is a type-object also implemented as value-type due to protected constructor 
  * and a instance tracking factory
@@ -18,7 +20,12 @@ public final class BikePart {
 	private String price = "";
 	private BikePartType type;
 	
-	protected BikePart(String fabricator, String price, BikePartType type){
+	protected BikePart(String fabricator, String price, BikePartType type) throws BikePartInitializationException{
+		try {
+			assertPriceIsValid(price);
+		}catch(IllegalArgumentException e){
+			throw new BikePartInitializationException(e.getMessage());
+		}
 		this.fabricator = fabricator;
 		this.type = type;
 		this.price = price;
@@ -55,5 +62,17 @@ public final class BikePart {
 			return true;
 		}
 		return false;
+	}
+
+	private void assertPriceIsValid(String price) throws IllegalArgumentException{
+		Double priceDouble = -1.0;
+		try {
+			priceDouble = Double.parseDouble(price);
+		}catch(Exception e){
+			throw new IllegalArgumentException("Price is not valid");
+		}
+		if(priceDouble < 0){
+			throw new IllegalArgumentException("Price is not valid");
+		}
 	}
 }

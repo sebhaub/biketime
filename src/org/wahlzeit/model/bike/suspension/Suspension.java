@@ -1,6 +1,7 @@
 package org.wahlzeit.model.bike.suspension;
 
 import org.wahlzeit.model.bike.BikePart;
+import org.wahlzeit.model.bike.BikePartInitializationException;
 
 /**
  * Created by sebi on 23.11.14.
@@ -37,14 +38,14 @@ public interface Suspension {
      * Sets the suspensiontype to type (see Enums.valueOf(String param)
      * @param type The name of the SuspensionType to set 
      */
-    public Suspension setSuspensionType(String type);
+    public Suspension setSuspensionType(String type) throws BikePartInitializationException;
 
     /***
      * Sets the travel of a suspensiontype
      * @param value the travel in mm
      * @param type the SuspensionType 
      */
-    public Suspension setSuspensionTravel(int value, SuspensionType type);
+    public Suspension setSuspensionTravel(int value, SuspensionType type) throws BikePartInitializationException;
 
     /***
      * Returns the SuspensionTravel for a given type
