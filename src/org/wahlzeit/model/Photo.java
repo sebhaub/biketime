@@ -182,14 +182,23 @@ public class Photo extends DataObject {
 		creationTime = rset.getLong("creation_time");
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
-		double latitude = rset.getDouble("latitude");
-		double longitude = rset.getDouble("longitude");
-		try {
-			photoLocation = LocationFactory.getInstance().createGPSLocation(latitude, longitude);
-			hasLocation = true;
-		}
-		catch (LocationException e){
 
+		boolean locationFailed = false;
+		double latitude = rset.getDouble("latitude");
+		if(rset.wasNull()){
+			locationFailed = true;
+		}
+		double longitude = rset.getDouble("longitude");
+		if(rset.wasNull()){
+			locationFailed = true;
+		}
+		if(!locationFailed) {
+			try {
+				photoLocation = LocationFactory.getInstance().createGPSLocation(latitude, longitude);
+				hasLocation = true;
+			} catch (LocationException e) {
+
+			}
 		}
 	}
 	
