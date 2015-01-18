@@ -1,10 +1,12 @@
 package org.wahlzeit.location;
 
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
 import static org.junit.Assert.assertEquals;
 
 public class LocationTest{
@@ -22,57 +24,70 @@ public class LocationTest{
     protected Location mapcodeLocation;
 
     @Before
-    public void setUp() {
-        gpsLocation = new GPSLocation(latitude, longitude);
-        mapcodeLocation = new MapcodeLocation(latitude,longitude);
+    public void setUp() throws LocationException{
+        try {
+            gpsLocation = new GPSLocation(latitude, longitude);
+            mapcodeLocation = new MapcodeLocation(latitude, longitude);
+        }catch (Exception e){
+            fail();
+        }
     }
     
     @Test
     public void testValueObject(){
-    	Location mGps = LocationFactory.getInstance().createGPSLocation(32, 12);
-    	Location otherGps = LocationFactory.getInstance().createGPSLocation(32, 12);
-    	assertTrue("Objects not equal", mGps.equals(otherGps));
-    	
-    	Location anotherGps = LocationFactory.getInstance().createGPSLocation(32, 13);
-    	assertTrue("Objects not equal", !mGps.equals(anotherGps));
-    	
-    	assertTrue("HashCode not equal", mGps.hashCode() == otherGps.hashCode());
-    	assertTrue("HashCode is equal", mGps.hashCode() != anotherGps.hashCode());
-    	
-    	Location mMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcode);
-    	Location otherMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcode);
-    	Location anotherMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcodeTwo);
-    	
-    	assertTrue("Objects not equal", mMapcode.equals(otherMapcode));
-    	assertTrue("Objects not equal", !mMapcode.equals(anotherMapcode));
-    	assertTrue("HashCode not equal", mMapcode.hashCode() == otherMapcode.hashCode());
-    	assertTrue("HashCode is equal", mMapcode.hashCode() != anotherMapcode.hashCode());
+        try {
+            Location mGps = LocationFactory.getInstance().createGPSLocation(32, 12);
+            Location otherGps = LocationFactory.getInstance().createGPSLocation(32, 12);
+            assertTrue("Objects not equal", mGps.equals(otherGps));
+
+            Location anotherGps = LocationFactory.getInstance().createGPSLocation(32, 13);
+            assertTrue("Objects not equal", !mGps.equals(anotherGps));
+
+            assertTrue("HashCode not equal", mGps.hashCode() == otherGps.hashCode());
+            assertTrue("HashCode is equal", mGps.hashCode() != anotherGps.hashCode());
+
+            Location mMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcode);
+            Location otherMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcode);
+            Location anotherMapcode = LocationFactory.getInstance().createMapCodeLocation(mapcodeTwo);
+
+            assertTrue("Objects not equal", mMapcode.equals(otherMapcode));
+            assertTrue("Objects not equal", !mMapcode.equals(anotherMapcode));
+            assertTrue("HashCode not equal", mMapcode.hashCode() == otherMapcode.hashCode());
+            assertTrue("HashCode is equal", mMapcode.hashCode() != anotherMapcode.hashCode());
+        }
+        catch (Exception e) {
+            fail();
+        }
     }
 
     @Test
     public void testMapCodeConstructors(){
-        Location mLocMapcode = new MapcodeLocation(latitude, longitude);
-        double latVal = mLocMapcode.getLatitude();
-        double lonVal = mLocMapcode.getLongitude();
-        double latValRounded = (double)Math.round(latVal*1000)/1000;
-        double lonValRounded = (double)Math.round(lonVal*1000)/1000;
+        try {
+            Location mLocMapcode = new MapcodeLocation(latitude, longitude);
+            double latVal = mLocMapcode.getLatitude();
+            double lonVal = mLocMapcode.getLongitude();
+            double latValRounded = (double) Math.round(latVal * 1000) / 1000;
+            double lonValRounded = (double) Math.round(lonVal * 1000) / 1000;
 
 
-        assertTrue("Lat should be "+latRounded+" but is "+latValRounded+ " Longitude should be " +
-                lonRounded + " but is "+lonValRounded, latValRounded == latRounded && lonValRounded == lonRounded);
-        assertTrue("Mapcode is false", mLocMapcode.getAsMapcodeString().equalsIgnoreCase(mapcode));
+            assertTrue("Lat should be " + latRounded + " but is " + latValRounded + " Longitude should be " +
+                    lonRounded + " but is " + lonValRounded, latValRounded == latRounded && lonValRounded == lonRounded);
+            assertTrue("Mapcode is false", mLocMapcode.getAsMapcodeString().equalsIgnoreCase(mapcode));
 
-        Location mLocLatLon = new MapcodeLocation(mapcode);
-        latVal = mLocLatLon.getLatitude();
-        lonVal = mLocLatLon.getLongitude();
-        latValRounded = (double)Math.round(latVal*1000)/1000;
-        lonValRounded = (double)Math.round(lonVal*1000)/1000;
-        assertTrue("Lat Long is false", latValRounded == latRounded && lonValRounded == lonRounded);
-        assertTrue("Mapcode is false", mLocLatLon.getAsMapcodeString().equalsIgnoreCase(mapcode));
+            Location mLocLatLon = new MapcodeLocation(mapcode);
+            latVal = mLocLatLon.getLatitude();
+            lonVal = mLocLatLon.getLongitude();
+            latValRounded = (double) Math.round(latVal * 1000) / 1000;
+            lonValRounded = (double) Math.round(lonVal * 1000) / 1000;
+            assertTrue("Lat Long is false", latValRounded == latRounded && lonValRounded == lonRounded);
+            assertTrue("Mapcode is false", mLocLatLon.getAsMapcodeString().equalsIgnoreCase(mapcode));
+        }catch(Exception e){
+            fail();
+        }
     }
 
     @Test
-    public void testGpsConstructors(){
+    public void testGpsConstructors()  throws LocationException{
         Location mGpsLocation = LocationFactory.getInstance().createGPSLocation(0, 0);;
         assertTrue("LatLong is false", mGpsLocation.getLatitude() == 0 && mGpsLocation.getLongitude() == 0);
         assertTrue("has location is not set", mGpsLocation.hasLocation());
@@ -135,7 +150,7 @@ public class LocationTest{
     }
 
     @Test
-    public void testAsStringMapcode(){
+    public void testAsStringMapcode() throws LocationException{
         String expected = mapcode;
         Location mLoc = new MapcodeLocation(latitude, longitude);
         assertEquals("AsString not as expected", expected, mLoc.asString());
@@ -143,24 +158,24 @@ public class LocationTest{
     }
 
     @Test
-    public void testAsStringGps(){
+    public void testAsStringGps() throws LocationException{
         String expected = "{lat=["+latitude+"] lon=["+longitude+"]}";
         Location mGpsLoc = new GPSLocation(latitude,longitude);
         assertEquals("AsString not as expected", expected, mGpsLoc.asString());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidLatitudeInConstructor(){
+    @Test(expected = LocationException.class)
+    public void testInvalidLatitudeInConstructor() throws LocationException{
         Location mGpsLocation = new GPSLocation(-91, 0);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidLongitudeInConstructor(){
+    @Test(expected = LocationException.class)
+    public void testInvalidLongitudeInConstructor() throws LocationException{
         Location mGpsLocation = new GPSLocation(0, 181);
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidMapcodeInConstructor(){
+    @Test(expected = LocationException.class)
+    public void testInvalidMapcodeInConstructor() throws LocationException{
         Location mMapcodeLocation = new MapcodeLocation("ABCDEFG");
     }
 

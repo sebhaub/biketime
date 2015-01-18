@@ -12,14 +12,14 @@ public class MapcodeLocation extends AbstractLocation {
 
     private String mapcode;
 
-    protected MapcodeLocation(double latitude, double longitude){
+    protected MapcodeLocation(double latitude, double longitude) throws LocationException{
         assertIsValidLatitude(latitude);
         assertIsValidLongitude(longitude);
         doSetLocation(latitude, longitude);
         this.isLocationSet = true;
     }
 
-    protected MapcodeLocation(String mapcode){
+    protected MapcodeLocation(String mapcode) throws LocationException{
         assertIsValidMapcodeString(mapcode);
         doSetLocation(mapcode);
         this.isLocationSet = true;

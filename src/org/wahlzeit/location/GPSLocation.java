@@ -19,14 +19,14 @@ public class GPSLocation extends AbstractLocation {
      * @param latitude
      * @param longitude
      */
-    protected GPSLocation(double latitude, double longitude){
+    protected GPSLocation(double latitude, double longitude) throws LocationException{
         assertIsValidLatitude(latitude);
         assertIsValidLongitude(longitude);
         doSetLocation(latitude,longitude);
         this.isLocationSet = true;
     }
 
-    protected GPSLocation(String mapcode){
+    protected GPSLocation(String mapcode) throws LocationException{
         assertIsValidMapcodeString(mapcode);
         doSetLocation(mapcode);
         this.isLocationSet = true;

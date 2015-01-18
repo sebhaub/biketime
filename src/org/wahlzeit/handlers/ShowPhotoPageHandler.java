@@ -97,11 +97,13 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 			page.addString(Photo.ID, photoId);
 
 			Tags tags = photo.getTags();
-			Location loc = photo.getPhotoLocation();
-			page.addString(Photo.DESCRIPTION, getPhotoSummary(us, photo));
-			page.addString(Photo.KEYWORDS, tags.asString(false, ','));
-			page.addString(Photo.LOCATION, "GPS : " + loc.asString());
-			page.addString(Photo.MAPCODE, "MAPCODE : " + loc.getAsMapcodeString());
+			if(photo.hasLocation()){
+				Location loc = photo.getPhotoLocation();
+				page.addString(Photo.DESCRIPTION, getPhotoSummary(us, photo));
+				page.addString(Photo.KEYWORDS, tags.asString(false, ','));
+				page.addString(Photo.LOCATION, "GPS : " + loc.asString());
+				page.addString(Photo.MAPCODE, "MAPCODE : " + loc.getAsMapcodeString());
+			}
 
 			if(photo instanceof BikePhoto){
 				page.addString(BikePhoto.BIKE_SUSPENSION, ((BikePhoto)photo).getBikeSuspensionString());

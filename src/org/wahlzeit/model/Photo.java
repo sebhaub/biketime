@@ -25,6 +25,7 @@ import java.net.*;
 
 import org.wahlzeit.location.GPSLocation;
 import org.wahlzeit.location.Location;
+import org.wahlzeit.location.LocationException;
 import org.wahlzeit.location.LocationFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
@@ -119,6 +120,7 @@ public class Photo extends DataObject {
 
 
 	protected Location photoLocation;
+	protected boolean hasLocation = false;
 	
 	/**
 	 * 
@@ -182,7 +184,13 @@ public class Photo extends DataObject {
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 		double latitude = rset.getDouble("latitude");
 		double longitude = rset.getDouble("longitude");
-		photoLocation = LocationFactory.getInstance().createGPSLocation(latitude, longitude);;
+		try {
+			photoLocation = LocationFactory.getInstance().createGPSLocation(latitude, longitude);
+			hasLocation = true;
+		}
+		catch (LocationException e){
+
+		}
 	}
 	
 	/**
@@ -203,8 +211,10 @@ public class Photo extends DataObject {
 		rset.updateInt("praise_sum", praiseSum);
 		rset.updateInt("no_votes", noVotes);
 		rset.updateLong("creation_time", creationTime);
-		rset.updateDouble("latitude", photoLocation.getLatitude());
-		rset.updateDouble("longitude", photoLocation.getLongitude());
+		if(hasLocation){
+			rset.updateDouble("latitude", photoLocation.getLatitude());
+			rset.updateDouble("longitude", photoLocation.getLongitude());
+		}
 	}
 
 	/**
@@ -329,12 +339,18 @@ public class Photo extends DataObject {
 		return ownerHomePage;
 	}
 
+	public boolean hasLocation(){
+		return hasLocation;
+	}
+
 	public Location getPhotoLocation(){
 		return photoLocation;
 	}
 
 	public void setPhotoLocation(Location location){
+
 		photoLocation = location;
+		hasLocation = true;
 	}
 	
 	/**

@@ -23,22 +23,22 @@ public final class LocationFactory {
 	}
 	
 	
-	public Location createGPSLocation(String mapcode){
+	public Location createGPSLocation(String mapcode) throws LocationException{
 		Location loc = new GPSLocation(mapcode);
 		return ensureLocation(loc);
 	}
 	
-	public Location createGPSLocation(double latitude, double longitude){
+	public Location createGPSLocation(double latitude, double longitude) throws LocationException{
 		Location loc = new GPSLocation(latitude, longitude);
 		return ensureLocation(loc);
 	}
 	
-	public Location createMapCodeLocation(String mapcode){
+	public Location createMapCodeLocation(String mapcode) throws LocationException{
 		Location loc = new MapcodeLocation(mapcode);
 		return ensureLocation(loc);
 	}
 	
-	public Location createMapCodeLocation(double latitude, double longitude){
+	public Location createMapCodeLocation(double latitude, double longitude) throws LocationException{
 		Location loc = new MapcodeLocation(latitude, longitude);
 		return ensureLocation(loc);
 	}

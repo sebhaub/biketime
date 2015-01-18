@@ -150,9 +150,9 @@ public abstract class AbstractLocation implements Location{
      * @methodtype Assertion
      * @methodproperties primitive
      */
-    protected final void assertIsValidLatitude(double latitude){
+    protected final void assertIsValidLatitude(double latitude) throws LocationException{
         if(!(latitude >= -90 && latitude <= 90)){
-            throw new IllegalArgumentException("The value "+latitude+ " is not a valid latitude!");
+            throw new LocationException("The value "+latitude+ " is not a valid latitude!");
         }
     }
 
@@ -166,9 +166,9 @@ public abstract class AbstractLocation implements Location{
      * @methodtype Assertion
      * @methodproperties primitive
      */
-    protected final void assertIsValidLongitude(double longitude){
+    protected final void assertIsValidLongitude(double longitude) throws LocationException{
         if (!(longitude >= -180 && longitude <= 180)){
-            throw new IllegalArgumentException("The value "+longitude+ " is not a valid longitude!");
+            throw new LocationException("The value "+longitude+ " is not a valid longitude!");
         }
     }
 
@@ -180,9 +180,9 @@ public abstract class AbstractLocation implements Location{
      * @methodtype Assertion
      * @methodproperties primitive
      */
-    protected final void assertIsValidMapcodeString(String mapcode){
+    protected final void assertIsValidMapcodeString(String mapcode) throws LocationException{
          if(!Mapcode.isValidMapcodeFormat(mapcode)){
-             throw new IllegalArgumentException("The value "+mapcode+ " is not a valid mapcode!");
+             throw new LocationException("The value "+mapcode+ " is not a valid mapcode!");
          }
     }
 }
