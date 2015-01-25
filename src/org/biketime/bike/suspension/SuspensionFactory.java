@@ -1,10 +1,10 @@
-package org.wahlzeit.model.bike.suspension;
+package org.biketime.bike.suspension;
 
 import java.util.HashMap;
 
-import org.wahlzeit.model.bike.BikePart;
-import org.wahlzeit.model.bike.BikePartFactory;
-import org.wahlzeit.model.bike.BikePartInitializationException;
+import org.biketime.bike.BikePart;
+import org.biketime.bike.BikePartFactory;
+import org.biketime.bike.BikePartInitializationException;
 
 /***
  * This class acts as a Factory to create a Suspension instance

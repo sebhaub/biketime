@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package org.biketime.location;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

@@ -1,10 +1,9 @@
-package org.wahlzeit.model.bike;
+package org.biketime.bike;
 
 import org.wahlzeit.model.Photo;
 import org.wahlzeit.model.PhotoId;
-import org.wahlzeit.model.bike.suspension.Suspension;
-import org.wahlzeit.model.bike.suspension.SuspensionFactory;
-import org.wahlzeit.utils.StringUtil;
+import org.biketime.bike.suspension.Suspension;
+import org.biketime.bike.suspension.SuspensionFactory;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

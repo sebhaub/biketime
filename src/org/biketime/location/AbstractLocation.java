@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package org.biketime.location;
 
 import com.mapcode.Mapcode;
 

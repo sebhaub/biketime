@@ -22,8 +22,7 @@ package org.wahlzeit.model;
 
 import java.sql.*;
 
-import org.wahlzeit.model.bike.AbstractPhotoFactory;
-import org.wahlzeit.model.bike.BikePhoto;
+import org.biketime.bike.AbstractPhotoFactory;
 import org.wahlzeit.services.*;
 
 /**

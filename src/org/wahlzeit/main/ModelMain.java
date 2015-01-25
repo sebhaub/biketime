@@ -25,10 +25,9 @@ import java.io.FileFilter;
 import java.sql.*;
 
 import org.wahlzeit.model.*;
-import org.wahlzeit.model.bike.BikePhotoFactory;
+import org.biketime.bike.BikePhotoFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.servlets.AbstractServlet;
-import org.wahlzeit.webparts.*;
 
 /**
  * A single-threaded Main class with database connection.

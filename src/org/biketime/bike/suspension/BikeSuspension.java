@@ -1,7 +1,7 @@
-package org.wahlzeit.model.bike.suspension;
+package org.biketime.bike.suspension;
 
-import org.wahlzeit.model.bike.BikePart;
-import org.wahlzeit.model.bike.BikePartInitializationException;
+import org.biketime.bike.BikePart;
+import org.biketime.bike.BikePartInitializationException;
 
 /***
  * The abstract Suspension class

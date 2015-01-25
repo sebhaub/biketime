@@ -25,7 +25,7 @@ import java.sql.*;
 import java.util.*;
 
 import org.wahlzeit.main.*;
-import org.wahlzeit.model.bike.BikePhotoFactory;
+import org.biketime.bike.BikePhotoFactory;
 import org.wahlzeit.services.*;
 
 /**

@@ -22,10 +22,9 @@ package org.wahlzeit.handlers;
 
 import java.util.*;
 
-import org.wahlzeit.location.Location;
+import org.biketime.location.Location;
 import org.wahlzeit.model.*;
-import org.wahlzeit.model.bike.BikePhoto;
-import org.wahlzeit.services.*;
+import org.biketime.bike.BikePhoto;
 import org.wahlzeit.utils.*;
 import org.wahlzeit.webparts.*;
 

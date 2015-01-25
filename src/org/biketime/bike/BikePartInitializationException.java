@@ -1,4 +1,4 @@
-package org.wahlzeit.model.bike;
+package org.biketime.bike;
 
 /**
  * Created by sebi on 18.01.15.

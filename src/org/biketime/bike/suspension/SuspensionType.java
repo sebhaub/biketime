@@ -1,4 +1,4 @@
-package org.wahlzeit.model.bike.suspension;
+package org.biketime.bike.suspension;
 
 /**
  * Created by sebi on 23.11.14.

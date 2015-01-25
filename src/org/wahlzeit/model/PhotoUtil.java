@@ -26,7 +26,7 @@ import java.awt.image.*;
 
 import javax.imageio.*;
 
-import org.wahlzeit.model.bike.BikePhotoFactory;
+import org.biketime.bike.BikePhotoFactory;
 import org.wahlzeit.services.*;
 
 /**

@@ -1,12 +1,12 @@
-package org.wahlzeit.model.bike;
+package org.biketime.bike;
 
 import static junit.framework.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.wahlzeit.model.bike.suspension.Suspension;
-import org.wahlzeit.model.bike.suspension.SuspensionFactory;
-import org.wahlzeit.model.bike.suspension.SuspensionType;
+import org.biketime.bike.suspension.Suspension;
+import org.biketime.bike.suspension.SuspensionFactory;
+import org.biketime.bike.suspension.SuspensionType;
 
 public class BikePartTest{
 	

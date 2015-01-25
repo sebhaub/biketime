@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package org.biketime.location;
 
 /**
  * Created by sebi on 18.01.15.

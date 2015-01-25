@@ -1,4 +1,4 @@
-package org.wahlzeit.model.bike;
+package org.biketime.bike;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;

@@ -1,4 +1,4 @@
-package org.wahlzeit.model.bike;
+package org.biketime.bike;
 
 import java.util.HashMap;
 

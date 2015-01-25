@@ -23,10 +23,9 @@ package org.wahlzeit.model;
 import java.sql.*;
 import java.net.*;
 
-import org.wahlzeit.location.GPSLocation;
-import org.wahlzeit.location.Location;
-import org.wahlzeit.location.LocationException;
-import org.wahlzeit.location.LocationFactory;
+import org.biketime.location.Location;
+import org.biketime.location.LocationException;
+import org.biketime.location.LocationFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 

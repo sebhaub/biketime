@@ -1,6 +1,5 @@
-package org.wahlzeit.model.bike;
+package org.biketime.bike;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 
 /***
  * This is a type-object also implemented as value-type due to protected constructor 

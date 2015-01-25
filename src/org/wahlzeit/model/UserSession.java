@@ -22,7 +22,7 @@ package org.wahlzeit.model;
 
 import java.util.*;
 
-import org.wahlzeit.model.bike.BikePhotoFactory;
+import org.biketime.bike.BikePhotoFactory;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 
