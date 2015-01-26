@@ -5,7 +5,7 @@ import org.biketime.bike.BikePartInitializationException;
 
 /**
  * Created by sebi on 23.11.14.
- * @collaboration BikePart Type-Object
+ * @collaboration {@link org.biketime.bike.BikePart} Type-Object
  * @role BaseObject
  */
 public interface Suspension {
@@ -30,26 +30,26 @@ public interface Suspension {
 
     /***
      * 
-     * @return the SuspensionType
+     * @returns the {@link org.biketime.bike.suspension.SuspensionType}
      */
     public SuspensionType getSuspensionType();
 
     /***
-     * Sets the suspensiontype to type (see Enums.valueOf(String param)
+     * Sets the {@link org.biketime.bike.suspension.SuspensionType} to type @see java.lang.Object.Enum#valueOf(String name)
      * @param type The name of the SuspensionType to set 
      */
     public Suspension setSuspensionType(String type) throws BikePartInitializationException;
 
     /***
-     * Sets the travel of a suspensiontype
+     * Sets the travel of a {@link org.biketime.bike.suspension.SuspensionType}
      * @param value the travel in mm
-     * @param type the SuspensionType 
+     * @param type the {@link org.biketime.bike.suspension.SuspensionType}
      */
     public Suspension setSuspensionTravel(int value, SuspensionType type) throws BikePartInitializationException;
 
     /***
      * Returns the SuspensionTravel for a given type
-     * @param type the Suspensiontype
+     * @param type the {@link org.biketime.bike.suspension.SuspensionType}
      * @return
      */
     public String getSuspensionTravel(SuspensionType type);

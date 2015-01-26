@@ -48,7 +48,7 @@ public class BikePhotoFactory extends AbstractPhotoFactory{
 	}
 	
 	/**
-	 * 
+	 * protected as this is a singleton
 	 */
 	protected BikePhotoFactory() {
 		// do nothing

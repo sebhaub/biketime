@@ -5,9 +5,9 @@ import java.util.HashMap;
 /***
  * This class acts as a Factory to create a Suspension instance
  * It handles and manages the creation of the value objects of BikeSuspension
- * @collaboration BikePart TypeObject
+ * @collaboration {@link org.biketime.bike.BikePart} TypeObject
  * @role Manager
- * @collaboration BikePart Factory
+ * @collaboration {@link org.biketime.bike.BikePart} Factory
  * @role Manager
  * * @author sebi
  *
@@ -40,8 +40,9 @@ public class BikePartFactory {
 	 * Creates and returns a instance of a Suspension. The concrete type depends on the given params
 	 * If the value object is already created and stored inside our hashmap, we will return that one,
 	 * else we will add the newly created one to the hashmap for later reuse.
-	 * @param type The Suspensiontype
-	 * @param travel The Travel of the Suspension (combined if Full Suspension)
+	 * @param fabricator The fabricator of this bikepart given as a string
+	 * @param price The price of this part given as a string
+	 * @param partType The partType given as a string - this must be one of {@link org.biketime.bike.BikePartType}
 	 * @return
 	 */
 	public BikePart createBikePart(String fabricator, String price, String partType) throws BikePartInitializationException{

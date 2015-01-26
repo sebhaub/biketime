@@ -4,7 +4,7 @@ import org.biketime.bike.BikePart;
 import org.biketime.bike.BikePartInitializationException;
 
 /***
- * The abstract Suspension class
+ * The abstract {@link org.biketime.bike.suspension.Suspension} class
  * @invariant if no values are set, SuspensionType is None, and asString is callable
  * value-object
  * @author sebi
@@ -18,7 +18,8 @@ public abstract class BikeSuspension implements Suspension{
     /***
      * Protected constructor
      * The subclasses have to call this one to initialize the final variable mSuspensiontype
-     * @param type the SuspensionType
+     * @param partType the {@link org.biketime.bike.BikePart}  type
+     * @param suspType the {@link org.biketime.bike.suspension.SuspensionType} type
      */
     protected BikeSuspension(BikePart partType, SuspensionType suspType){
         this.mSuspensionType = suspType;
@@ -56,9 +57,9 @@ public abstract class BikeSuspension implements Suspension{
     /***
      * Since we have a value-object this method will not "set" a value on this instance
      * but instead return a "new" instance with this suspensions travel and the setted type
-     * using the SuspensionFactory
-     * @param type The name of the SuspensionType to set
-     * @return a BikeSuspension Instance with the setted value
+     * using the {@link org.biketime.bike.suspension.SuspensionFactory}
+     * @param type The name of the {@link org.biketime.bike.suspension.SuspensionType} to set
+     * @return a {@link org.biketime.bike.suspension.Suspension} Instance with the setted value
      */
     @Override
     public final Suspension setSuspensionType(String type) throws BikePartInitializationException{
@@ -69,8 +70,8 @@ public abstract class BikeSuspension implements Suspension{
     /***
      * Since we have a value-object this method will not "set" a value on this instance
      * but instead return a "new" instance with this suspensions type and the setted travel
-     * using the SuspensionFactory
-     * @param type The name of the SuspensionType to set
+     * using the {@link org.biketime.bike.suspension.SuspensionFactory}
+     * @param type The name of the {@link org.biketime.bike.suspension.SuspensionType} to set
      * @return
      */
     @Override

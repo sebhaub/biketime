@@ -4,11 +4,11 @@ package org.biketime.bike;
 /***
  * This is a type-object also implemented as value-type due to protected constructor 
  * and a instance tracking factory
- * @collaboration BikePhoto
+ * @collaboration {@link org.biketime.bike.BikePhoto}
  * @role Domain Object
- * @collaboration BikePart Type-Object
+ * @collaboration {@link org.biketime.bike.BikePart} Type-Object
  * @role Type Object
- * @collaboration BikePart Factory
+ * @collaboration {@link org.biketime.bike.BikePart}  Factory
  * @role Domain Object
  * @author sebi
  *

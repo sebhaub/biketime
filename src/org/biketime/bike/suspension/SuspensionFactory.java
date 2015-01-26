@@ -9,9 +9,9 @@ import org.biketime.bike.BikePartInitializationException;
 /***
  * This class acts as a Factory to create a Suspension instance
  * It handles and manages the creation of the value objects of BikeSuspension
- * @collaboration Suspension Factory
+ * @collaboration {@link org.biketime.bike.suspension.Suspension} Factory
  * @role Manager
- * @collaboration BikePart Factory
+ * @collaboration {@link org.biketime.bike.BikePart} Factory
  * @role Client
  * * @author sebi
  *
@@ -47,11 +47,11 @@ public class SuspensionFactory {
 	private static String delims = "[|]";
 
 	/***
-	 * Creates and returns a instance of a Suspension. The concrete type depends on the given params
+	 * Creates and returns a instance of a {@link org.biketime.bike.suspension.Suspension}. The concrete type depends on the given params
 	 * If the value object is already created and stored inside our hashmap, we will return that one,
 	 * else we will add the newly created one to the hashmap for later reuse.
-	 * @param type The Suspensiontype
-	 * @param travel The Travel of the Suspension (combined if Full Suspension)
+	 * @param type The {@link org.biketime.bike.suspension.SuspensionType}
+	 * @param travel The Travel of the {@link org.biketime.bike.suspension.Suspension} (combined if Full Suspension)
 	 * @return
 	 */
 	public Suspension createSuspension(String type, String travel) throws BikePartInitializationException{
